@@ -1,0 +1,27 @@
+package commonapi
+ 
+interface HelloWorld {
+  version {major 1 minor 0}
+  method sayHello {
+    in {
+      String name
+    }
+    out {
+      String message
+    }
+  }
+
+  method sayHelloFnF fireAndForget {
+    in {
+      String name
+    }
+  }
+
+  broadcast locationChanged {
+    out {
+      Int32 loc
+    }
+  }
+
+  attribute Int32 x
+} 
