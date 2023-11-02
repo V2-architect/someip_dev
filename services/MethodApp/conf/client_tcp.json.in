@@ -14,11 +14,32 @@
             "id" : "0x5001"
         }
     ],
+    "services" :
+    [
+        {
+            "service" : "0x7D0",
+            "instance" : "0x7D0",
+            "reliable" : 
+	    	{
+                "port": "50000",
+				"enable-magic-cookies": "false"
+            }
+        },
+        {
+            "service" : "0x7D2",
+            "instance" : "0x7D2",
+            "reliable" : 
+            {
+                "port": "50002",
+				"enable-magic-cookies": "false"
+            }
+        }
+    ],
     "clients" :
     [   
         {
-            "reliable_client_ports": {"first": "50000", "last": "50100"},
-            "reliable_remote_ports": {"first": "53521", "last": "53521"}
+            "reliable_client_ports": {"first": "50020", "last": "50030"},
+            "reliable_remote_ports": {"first": "50000", "last": "50010"}
         }
     ],  
     "routing" : "MethodApp",
