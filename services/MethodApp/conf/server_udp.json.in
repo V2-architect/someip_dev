@@ -2,16 +2,24 @@
     "unicast" : "@SOMEIP_HOST_IP@",
     "logging" :
     { 
-        "level" : "trace",
+        "level" : "debug",
         "console" : "true",
         "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
         "dlt" : "false"
     },
-    "applications" :
+    "applications" : 
     [
         {
             "name" : "MethodApp",
-            "id" : "0x5555"
+            "id" : "0x4444"
+        }
+    ],
+    "services" :
+    [
+        {
+            "service" : "0x1234",
+            "instance" : "0x5678",
+            "unreliable" : "53520"
         }
     ],
     "routing" : "MethodApp",

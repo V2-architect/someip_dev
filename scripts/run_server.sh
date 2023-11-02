@@ -38,8 +38,8 @@ fi
 # check prerequisite
 ./pre_check.py ${APP_LD_LIBRARY_PATH}
 
-CONF_FILE_TEMPLATE=${APP_ROOT}/client/client_$TRANSPORT_PROTOCOL.json.in
-CONF_FILE=${APP_ROOT}/client_$TRANSPORT_PROTOCOL.json
+CONF_FILE_TEMPLATE=${APP_ROOT}/server/server_$TRANSPORT_PROTOCOL.json.in
+CONF_FILE=${APP_ROOT}/server_$TRANSPORT_PROTOCOL.json
 
 echo "==========================================="
 echo "============= SOME/IP Client =============="
@@ -57,5 +57,5 @@ sed "s/@SOMEIP_HOST_IP@/${SOMEIP_HOST_IP}/g" $CONF_FILE_TEMPLATE > $CONF_FILE
 LD_LIBRARY_PATH=$APP_LD_LIBRARY_PATH \
 VSOMEIP_CONFIGURATION=$CONF_FILE \
     VSOMEIP_APPLICATION_NAME=$APP_NAME \
-    ${APP_ROOT}/${APP_NAME}_client_$TRANSPORT_PROTOCOL
+    ${APP_ROOT}/${APP_NAME}_server_$TRANSPORT_PROTOCOL
 

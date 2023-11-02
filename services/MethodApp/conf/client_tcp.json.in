@@ -21,7 +21,7 @@
             "reliable_remote_ports": {"first": "53521", "last": "53521"}
         }
     ],  
-    "routing" : "routingmanagerd",
+    "routing" : "MethodApp",
     "service-discovery" :
     {
         "enable" : "true",

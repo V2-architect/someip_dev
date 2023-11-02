@@ -7,32 +7,11 @@
         "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
         "dlt" : "false"
     },
-    "applications" : 
-    [
-        {
-            "name" : "MethodApp",
-            "id" : "0x5000"
-        }
-    ],
     "services" :
     [
         {
-            "service" : "0x7D0",
-            "instance" : "0x7D0",
-            "reliable" : 
-	    	{
-                "port": "50000",
-				"enable-magic-cookies": "false"
-            }
-        },
-        {
-            "service" : "0x7D2",
-            "instance" : "0x7D2",
-            "reliable" : 
-            {
-                "port": "50002",
-				"enable-magic-cookies": "false"
-            }
+            "service" : "0x1234",
+            "instance" : "0x5678"
         }
     ],
     "routing" : "routingmanagerd",

@@ -1,0 +1,29 @@
+#!/bin/bash
+
+TRANSPORT_PROTOCOL=$1
+APP_NAME=$(cat someip_service.prop | grep APP_NAME | awk -F= '{print $2}')
+
+CURR_SH_PATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+GIT_PROJECT_ROOT=`../../scripts/get_git_path.py ${CURR_SH_PATH}`
+CGEN_ROOT=${GIT_PROJECT_ROOT}/tools/cgen
+
+
+if [ -z "${TRANSPORT_PROTOCOL}" ]; then
+    echo "[Error] please input the protocol"
+    echo "   $ $0 tcp"
+    echo "   $ $0 udp"
+    exit -1
+fi
+
+rm -rf src-gen/*
+
+# copy corresponding fdepl file to the target file
+echo "-----------------------------------------------------------"
+echo "    ${APP_NAME}_${TRANSPORT_PROTOCOL}.fdepl ----(copy)----> ${APP_NAME}.fdepl"
+echo "-----------------------------------------------------------"
+echo ""
+cp ./fidl/${APP_NAME}_${TRANSPORT_PROTOCOL}.fdepl ./fidl/${APP_NAME}.fdepl
+
+# generate source files
+$CGEN_ROOT/commonapi_core_generator/commonapi-core-generator-linux-x86_64 -sk ./fidl/${APP_NAME}.fidl
+$CGEN_ROOT/commonapi_someip_generator/commonapi-someip-generator-linux-x86_64 ./fidl/${APP_NAME}.fdepl

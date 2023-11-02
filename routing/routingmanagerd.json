@@ -1,20 +1,25 @@
 {
-    "unicast" : "@SOMEIP_HOST_IP@",
+    "unicast" : "10.0.0.101",
     "logging" :
     { 
-        "level" : "trace",
+        "level" : "debug",
         "console" : "true",
         "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
         "dlt" : "false"
     },
-    "applications" :
+    "services" :
     [
         {
-            "name" : "MethodApp",
-            "id" : "0x5555"
+            "service" : "0x1234",
+            "instance" : "0x5678",
+            "reliable" : 
+	    {
+                "port": "53520",
+		"enable-magic-cookies": "false"
+            }
         }
     ],
-    "routing" : "MethodApp",
+    "routing" : "routingmanagerd",
     "service-discovery" :
     {
         "enable" : "true",
