@@ -27,9 +27,8 @@ cp -rf ${APP_NAME}_client ${APP_NAME}_client_$TRANSPORT_PROTOCOL
 cp -rf ${APP_NAME}_server ${APP_NAME}_server_$TRANSPORT_PROTOCOL
 
 # copy SOME/IP service conf file
-mkdir -p client server
-cp -rf ../conf/client*.json.in ./client/
-cp -rf ../conf/server*.json.in ./server/
+cp -rf ../conf/client*.json.in .
+cp -rf ../conf/server*.json.in .
 cp -rf ../../../routing/* .
 
 # copy SOME/IP service script file

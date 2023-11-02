@@ -38,7 +38,7 @@ fi
 # check prerequisite
 ./pre_check.py ${APP_LD_LIBRARY_PATH}
 
-CONF_FILE_TEMPLATE=${APP_ROOT}/client/client_$TRANSPORT_PROTOCOL.json.in
+CONF_FILE_TEMPLATE=${APP_ROOT}/client_$TRANSPORT_PROTOCOL.json.in
 CONF_FILE=${APP_ROOT}/client_$TRANSPORT_PROTOCOL.json
 
 echo "==========================================="
