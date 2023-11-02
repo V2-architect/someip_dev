@@ -18,19 +18,29 @@ def main(someip_service_target_path):
 
     # 2. rm all the files in the target path
     print(f"[2] remove all files in the target path ({someip_service_target_path})")
-    os.system(f"rm -rf {someip_service_target_path}/*")
+    ret = os.system(f"rm -rf {someip_service_target_path}/*")
+    if ret != 0:
+        print("[Error] error happened. please check the error.")
+        exit(1)
     print("=> ok\n")
     time.sleep(1)
 
     # 3. copy new someip service files to the target path
     print(f"[3] copy all new someip_service files to the target path ({someip_service_target_path})")
+    if not os.path.exists("build"):
+        print("[Error] please check the src path again. you should run the script right under the SOMEIP App directory")
+        exit(1)
+
     cmd = "find ./build -type f"
     except_keywords = ['CMakeFiles', 'CMakeCache', 'Makefile', 'cmake_install']
     for kw in except_keywords:
         cmd += f"| grep -v {kw}"
     src_files = os.popen(cmd).read().strip().split("\n")
     for src_f in src_files:
-        os.system(f"cp -rf {src_f} {someip_service_target_path}/")
+        ret = os.system(f"cp -rf {src_f} {someip_service_target_path}/")
+        if ret != 0:
+            print("[Error] error happened. please check the error.")
+            exit(1)
     print("=> ok\n")
     time.sleep(1)
 

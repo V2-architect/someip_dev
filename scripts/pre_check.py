@@ -2,6 +2,7 @@
 
 import os
 import sys
+import time
 
 def main(argv):
     # 01. check if /etc/commonapi.ini exists
@@ -15,6 +16,13 @@ def main(argv):
         if not os.path.exists(ld_path):
             print(f"[Error] {ld_path} foler is not found")
             exit(1)
+
+    # 03. check if multicast IP is set
+    ret = os.popen("route -n | grep 239.10.0.1").read().strip()
+    if not bool(ret):
+        print("[Warning] multicast IP(239.10.0.1) is not set. please check!")
+        time.sleep(3)
+
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
