@@ -1,0 +1,5 @@
+dependencies
+tools
+build/*
+**/build
+**/src-gen
