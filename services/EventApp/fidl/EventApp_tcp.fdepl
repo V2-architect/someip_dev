@@ -1,0 +1,50 @@
+//import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-SOMEIP_deployment_spec.fdepl"
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "EventApp.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.EventApp {
+	SomeIpServiceID = 0x2000
+
+	broadcast event001{
+		SomeIpEventID = 40001
+        SomeIpEventGroups = {1}
+        SomeIpReliable = true
+	}
+
+	broadcast event002{
+		SomeIpEventID = 40002
+        SomeIpEventGroups = {1}
+        SomeIpReliable = true
+	}
+
+	broadcast event003{
+		SomeIpEventID = 40003
+        SomeIpEventGroups = {2}
+        SomeIpReliable = true
+	}
+
+	broadcast event004{
+		SomeIpEventID = 40004
+        SomeIpEventGroups = {3}
+        SomeIpReliable = true
+	}
+
+	broadcast event005{
+		SomeIpEventID = 40005
+        SomeIpEventGroups = {4}
+        SomeIpReliable = true
+	}
+
+	broadcast event006{
+		SomeIpEventID = 40006
+        SomeIpEventGroups = {5}
+        SomeIpReliable = true
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.EventApp {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x2000
+	}
+}

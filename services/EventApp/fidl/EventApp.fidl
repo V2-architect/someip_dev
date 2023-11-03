@@ -1,0 +1,30 @@
+package commonapi
+ 
+interface EventApp {
+  version {major 1 minor 0}
+
+  broadcast event001 {
+    out { Int32 out1 }
+  }
+
+  broadcast event002 {
+    out { Int32 out1 }
+  }
+
+  broadcast event003 {
+    out { Int32 out1 }
+  }
+
+  broadcast event004 selective {
+    out { Int32 out1 }
+  }
+
+  broadcast event005 selective {
+    out { Int32 out1 }
+  }
+
+  broadcast event006 selective {
+    out { Int32 out1 }
+  }
+} 
+
