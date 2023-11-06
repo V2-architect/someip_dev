@@ -11,7 +11,7 @@
     [
         {
             "name" : "EventApp",
-            "id" : "0x4444"
+            "id" : "0x2000"
         }
     ],
     "services" :
@@ -19,7 +19,12 @@
         {
             "service" : "0x2000",
             "instance" : "0x2000",
-            "unreliable" : "53520"
+            "unreliable" : "32000",
+            "reliable" : 
+	    	{
+                "port": "32100",
+				"enable-magic-cookies": "false"
+            }
         }
     ],
     "routing" : "EventApp",

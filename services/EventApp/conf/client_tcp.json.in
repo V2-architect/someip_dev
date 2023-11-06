@@ -11,7 +11,7 @@
     [
         {
             "name" : "EventApp",
-            "id" : "0x5001"
+            "id" : "0x2000"
         }
     ],
     "services" :
@@ -19,9 +19,10 @@
         {
             "service" : "0x2000",
             "instance" : "0x2000",
+            "unreliable" : "32000",
             "reliable" : 
 	    	{
-                "port": "50000",
+                "port": "32100",
 				"enable-magic-cookies": "false"
             }
         }
@@ -29,11 +30,11 @@
     "clients" :
     [   
         {
-            "reliable_client_ports": {"first": "50020", "last": "50030"},
-            "reliable_remote_ports": {"first": "50000", "last": "50010"}
+            "reliable_client_ports": {"first": "32100", "last": "32110"},
+            "reliable_remote_ports": {"first": "32100", "last": "32110"}
         }
     ],  
-    "routing" : "EventApp",
+    "routing" : "routingmanagerd",
     "service-discovery" :
     {
         "enable" : "true",

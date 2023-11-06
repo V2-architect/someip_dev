@@ -11,10 +11,23 @@
     [
         {
             "name" : "EventApp",
-            "id" : "0x5555"
+            "id" : "0x2000"
         }
     ],
-    "routing" : "EventApp",
+    "services" :
+    [
+        {
+            "service" : "0x2000",
+            "instance" : "0x2000",
+            "unreliable" : "32000",
+            "reliable" : 
+	    	{
+                "port": "32100",
+				"enable-magic-cookies": "false"
+            }
+        }
+    ],
+    "routing" : "routingmanagerd",
     "service-discovery" :
     {
         "enable" : "true",

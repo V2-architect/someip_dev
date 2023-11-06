@@ -3,7 +3,7 @@ import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOME
 import "MethodApp.fidl"
 
 define org.genivi.commonapi.someip.deployment for interface commonapi.MethodApp {
-	SomeIpServiceID = 0x1234
+	SomeIpServiceID = 0x1000
 
 	method method001{
 		SomeIpMethodID = 1
@@ -21,6 +21,6 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.MethodApp 
 define org.genivi.commonapi.someip.deployment for provider as MyService {
 	instance commonapi.MethodApp {
 		InstanceId = "test"
-		SomeIpInstanceID = 0x5678
+		SomeIpInstanceID = 0x1000
 	}
 }

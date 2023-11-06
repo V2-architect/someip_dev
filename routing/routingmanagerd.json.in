@@ -10,8 +10,25 @@
     "services" :
     [
         {
-            "service" : "0x1234",
-            "instance" : "0x5678"
+            "service" : "0x1000",
+            "instance" : "0x1000",
+            "unreliable": "31000",
+            "reliable" : 
+            {
+                "port": "31100",
+                "enable-magic-cookies": "false"
+            }
+
+        },
+        {
+            "service" : "0x2000",
+            "instance" : "0x2000",
+            "unreliable": "32000",
+            "reliable" : 
+            {
+                "port": "32100",
+                "enable-magic-cookies": "false"
+            }
         }
     ],
     "routing" : "routingmanagerd",

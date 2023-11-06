@@ -11,26 +11,18 @@
     [
         {
             "name" : "MethodApp",
-            "id" : "0x5001"
+            "id" : "0x1000"
         }
     ],
     "services" :
     [
         {
-            "service" : "0x7D0",
-            "instance" : "0x7D0",
+            "service" : "0x1000",
+            "instance" : "0x1000",
+            "unreliable" : "31000",
             "reliable" : 
 	    	{
-                "port": "50000",
-				"enable-magic-cookies": "false"
-            }
-        },
-        {
-            "service" : "0x7D2",
-            "instance" : "0x7D2",
-            "reliable" : 
-            {
-                "port": "50002",
+                "port": "31100",
 				"enable-magic-cookies": "false"
             }
         }
@@ -38,11 +30,11 @@
     "clients" :
     [   
         {
-            "reliable_client_ports": {"first": "50020", "last": "50030"},
-            "reliable_remote_ports": {"first": "50000", "last": "50010"}
+            "reliable_client_ports": {"first": "31100", "last": "31110"},
+            "reliable_remote_ports": {"first": "31100", "last": "31110"}
         }
     ],  
-    "routing" : "MethodApp",
+    "routing" : "routingmanagerd",
     "service-discovery" :
     {
         "enable" : "true",

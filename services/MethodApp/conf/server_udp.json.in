@@ -11,18 +11,23 @@
     [
         {
             "name" : "MethodApp",
-            "id" : "0x4444"
+            "id" : "0x1000"
         }
     ],
     "services" :
     [
         {
-            "service" : "0x1234",
-            "instance" : "0x5678",
-            "unreliable" : "53520"
+            "service" : "0x1000",
+            "instance" : "0x1000",
+            "unreliable" : "31000",
+            "reliable" : 
+	    	{
+                "port": "31100",
+				"enable-magic-cookies": "false"
+            }
         }
     ],
-    "routing" : "MethodApp",
+    "routing" : "routingmanagerd",
     "service-discovery" :
     {
         "enable" : "true",
