@@ -7,20 +7,23 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.MethodApp 
 
 	method method001{
 		SomeIpMethodID = 1
+		SomeIpReliable = true
 	}
 
 	method method002{
 		SomeIpMethodID = 2
+		SomeIpReliable = true
 	}
 
 	method method003{
 		SomeIpMethodID = 3
+		SomeIpReliable = true
 	}
 }
 
 define org.genivi.commonapi.someip.deployment for provider as MyService {
 	instance commonapi.MethodApp {
 		InstanceId = "test"
-		SomeIpInstanceID = 0x1000
+		SomeIpInstanceID = 0x1001
 	}
 }
