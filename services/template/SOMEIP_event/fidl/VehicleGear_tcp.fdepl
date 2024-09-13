@@ -1,0 +1,20 @@
+//import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-SOMEIP_deployment_spec.fdepl"
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "VehicleGear.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.VehicleGear {
+	SomeIpServiceID = 0x2002
+
+	broadcast gear {
+		SomeIpEventID = 40001
+        SomeIpEventGroups = {1}
+		SomeIpReliable = true
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.VehicleGear {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x2002
+	}
+}

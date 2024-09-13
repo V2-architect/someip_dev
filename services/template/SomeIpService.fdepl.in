@@ -1,0 +1,17 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "@SERVICE_NAME@.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.@SERVICE_NAME@ {
+	SomeIpServiceID = @SERVICE_ID@
+
+	@METHOD_AREA_FDEPL@
+
+	@EVENT_AREA_FDEPL@
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.@SERVICE_NAME@ {
+		InstanceId = "test"
+		SomeIpInstanceID = @INSTANCE_ID@
+	}
+}

@@ -1,0 +1,10 @@
+package commonapi
+ 
+interface VehicleGear {
+  version {major 1 minor 0}
+
+  broadcast gear {
+    out { Int32 gear }
+  }
+} 
+
