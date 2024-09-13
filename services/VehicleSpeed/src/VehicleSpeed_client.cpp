@@ -29,8 +29,14 @@ int main() {
     CommonAPI::CallStatus callStatus;
     int retVal;
 
-    myProxy->getSpeedEvent().subscribe([&](const float & event) {
-        std::cout << "[Event-normal] Received VehicleSpeed event: " << event << std::endl;
+    int count = 0;
+    myProxy->getVehicle_speed_axisEvent().subscribe([&](const float & speed_x, const float & speed_y, const float & speed_z) {
+        //count++;
+        //if (count == 50)
+            std::cout << "[Event] VehicleSpeed_x: " << speed_x <<
+                         ", VehicleSpeed_y: " << speed_y <<
+                         ", VehicleSpeed_z: " << speed_z << std::endl;
+  
     });
 
     while(true) {

@@ -5,7 +5,7 @@ import "VehicleSpeed.fidl"
 define org.genivi.commonapi.someip.deployment for interface commonapi.VehicleSpeed {
 	SomeIpServiceID = 0x2001
 
-	broadcast speed {
+	broadcast vehicle_speed_axis {
 		SomeIpEventID = 40001
         SomeIpEventGroups = {1}
 		SomeIpReliable = true
