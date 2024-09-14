@@ -1,0 +1,18 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "VehicleAccel.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.VehicleAccel {
+	SomeIpServiceID = 0x1002
+
+	broadcast AccelAxis {
+		SomeIpEventID = 41001
+        SomeIpEventGroups = {1}
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.VehicleAccel {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}

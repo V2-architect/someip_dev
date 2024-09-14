@@ -1,0 +1,15 @@
+package commonapi
+ 
+interface VehicleAccel {
+  version {major 1 minor 0}
+
+  broadcast AccelAxis {
+    out { 
+		Float accel_x
+		Float accel_y
+		Float accel_z
+	}
+  }
+
+} 
+
