@@ -8,12 +8,11 @@ import time
 
 
 def main():
-	pdb.set_trace()
     # 1. create a release/ folder
-	print("[1] create a release/ folder")
-	os.system("rm -rf release/")
-	os.system("mkdir -p release/")
-	print("=> ok\n")
+    print("[1] create a release/ folder")
+    os.system("rm -rf release/")
+    os.system("mkdir -p release/")
+    print("=> ok\n")
     time.sleep(1)
 
     # 2. copy new someip service files to the target path
@@ -36,7 +35,4 @@ def main():
     time.sleep(1)
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
-        print("[Error] $ release.py")
-        exit(1)
-    main(sys.argv[1])
+    main()
