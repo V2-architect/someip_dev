@@ -23,6 +23,7 @@ def main(svc_name, svc_type):
 
 
 	# [2] replace template variables with service specific term
+	logging.info("[2] replace template variables with service specific term")
 	service_spec = json.loads(open("template/service_info/someip_service_spec.json").read())
 	service_info = service_spec[svc_name]
 
@@ -65,12 +66,8 @@ def main(svc_name, svc_type):
 				service_text = f"0x{service_text.zfill(4)}"
 			#if target == 'SERVICE_NAME':
 			#	pdb.set_trace()
-			logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
+			#logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
 			os.system(f"sed -i s,@{target}@,{service_text},g {f}")
-
-	
-	
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
