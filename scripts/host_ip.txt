@@ -1,0 +1,8 @@
+zone_gw_fl:10.0.0.1
+zone_gw_fr:10.0.0.2
+zone_gw_rl:10.0.0.3
+zone_gw_rr:10.0.0.4
+ivi:10.0.0.5
+cluster:10.0.0.6
+adas:10.0.0.7
+telematics:10.0.0.8

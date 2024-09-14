@@ -1,16 +1,17 @@
 #!/bin/bash -e
 
-if [ -z "$1" -o -z "$2" ]; then
+if [ -z "$1" ]; then
     echo "[Error] input the argument like below"
-    echo "  $ $0 <HOST_IP> <TRANS_PROTOCOL>"
-    echo "  $ $0 10.0.0.1 tcp"
-    echo "  $ $0 10.0.0.1 udp"
+    echo "  $ $0 <TRANS_PROTOCOL>"
+    echo "  $ $0 tcp"
+    echo "  $ $0 udp"
     exit -1
 fi
 
 # get data from user input
-SOMEIP_HOST_IP=$1
-TRANSPORT_PROTOCOL=$2
+HOSTNAME=$(hostname)
+SOMEIP_HOST_IP=`cat host_ip.txt | grep $(hostname) | awk -F: '{print $2}'`
+TRANSPORT_PROTOCOL=$1
 
 DEV_MODE="n"
 if [ "$(echo $(pwd) | grep someip_dev)" != "" ]; then
@@ -18,7 +19,7 @@ if [ "$(echo $(pwd) | grep someip_dev)" != "" ]; then
 fi
 
 # get SOME/IP service runtime information from someip_service.prop
-APP_NAME=`cat someip_service.prop | grep APP_NAME | awk -F= '{print $2}'`
+SERVICE_NAME=`cat someip_service.prop | grep SERVICE_NAME | awk -F= '{print $2}'`
 MULTICAST_IP=`cat someip_service.prop | grep MULTICAST_IP | awk -F= '{print $2}'`
 
 # get env variable at runtime
@@ -30,9 +31,9 @@ CAPICXX_SOMEIP_PATH=${GIT_PROJECT_ROOT}/dependencies/capicxx-someip-runtime_3.2.
 VSOMEIP_PATH=${GIT_PROJECT_ROOT}/dependencies/vsomeip_3.3.0/lib
 APP_LD_LIBRARY_PATH=${BOOST_LIBRARY_PATH}:${CAPICXX_CORE_PATH}:${CAPICXX_SOMEIP_PATH}:${VSOMEIP_PATH}
 
-APP_ROOT=${GIT_PROJECT_ROOT}/services/${APP_NAME}
+APP_ROOT=${GIT_PROJECT_ROOT}/services/${SERVICE_NAME}
 if [ "${DEV_MODE}" == "y" ]; then
-    APP_ROOT=${GIT_PROJECT_ROOT}/services/${APP_NAME}/build
+    APP_ROOT=${GIT_PROJECT_ROOT}/services/${SERVICE_NAME}/build
 fi
 
 # check prerequisite
@@ -56,6 +57,6 @@ sed "s/@SOMEIP_HOST_IP@/${SOMEIP_HOST_IP}/g" $CONF_FILE_TEMPLATE > $CONF_FILE
 
 LD_LIBRARY_PATH=$APP_LD_LIBRARY_PATH \
 VSOMEIP_CONFIGURATION=$CONF_FILE \
-    VSOMEIP_APPLICATION_NAME=$APP_NAME \
-    ${APP_ROOT}/${APP_NAME}_server_$TRANSPORT_PROTOCOL
+    VSOMEIP_APPLICATION_NAME=$SERVICE_NAME \
+    ${APP_ROOT}/${SERVICE_NAME}_server_$TRANSPORT_PROTOCOL
 

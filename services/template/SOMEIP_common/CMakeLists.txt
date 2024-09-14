@@ -5,7 +5,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
 set(CMAKE_BUILD_TYPE Debug)
 
 # service properties
-set(SERVICE_NAME "@SOMEIP_APPNAME@")
+set(SERVICE_NAME "@SERVICE_NAME@")
 set(APP_CLIENT_NAME "${SERVICE_NAME}_client")
 set(APP_SERVER_NAME "${SERVICE_NAME}_server")
 

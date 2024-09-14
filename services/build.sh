@@ -1,7 +1,7 @@
 #!/bin/bash -e
 
 TRANSPORT_PROTOCOL=$1
-APP_NAME=$(cat someip_service.prop | grep APP_NAME | awk -F= '{print $2}')
+SERVICE_NAME=$(cat someip_service.prop | grep SERVICE_NAME | awk -F= '{print $2}')
 
 if [ -z "$TRANSPORT_PROTOCOL" ]; then
     echo "[Error] input the protocol"
@@ -18,13 +18,13 @@ make -j4
 echo "Build done"
 
 echo "--------------------------------------------------------------------------------------"
-echo "  ${APP_NAME}_client  -----(copy)----->  ${APP_NAME}_client_$TRANSPORT_PROTOCOL"
-echo "  ${APP_NAME}_server  -----(copy)----->  ${APP_NAME}_server_$TRANSPORT_PROTOCOL"
+echo "  ${SERVICE_NAME}_client  -----(copy)----->  ${SERVICE_NAME}_client_$TRANSPORT_PROTOCOL"
+echo "  ${SERVICE_NAME}_server  -----(copy)----->  ${SERVICE_NAME}_server_$TRANSPORT_PROTOCOL"
 echo "--------------------------------------------------------------------------------------"
 echo ""
 
-cp -rf ${APP_NAME}_client ${APP_NAME}_client_$TRANSPORT_PROTOCOL
-cp -rf ${APP_NAME}_server ${APP_NAME}_server_$TRANSPORT_PROTOCOL
+cp -rf ${SERVICE_NAME}_client ${SERVICE_NAME}_client_$TRANSPORT_PROTOCOL
+cp -rf ${SERVICE_NAME}_server ${SERVICE_NAME}_server_$TRANSPORT_PROTOCOL
 
 # copy SOME/IP service conf file
 cp -rf ../conf/client*.json.in .

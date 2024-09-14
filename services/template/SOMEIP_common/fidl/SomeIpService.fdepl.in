@@ -4,9 +4,16 @@ import "@SERVICE_NAME@.fidl"
 define org.genivi.commonapi.someip.deployment for interface commonapi.@SERVICE_NAME@ {
 	SomeIpServiceID = @SERVICE_ID@
 
-	@METHOD_AREA_FDEPL@
+	method @METHOD_NAME@ {
+		// example
+		SomeIpMethodID = 2
+	}
 
-	@EVENT_AREA_FDEPL@
+	broadcast @EVENT_NAME@ {
+		// example
+		SomeIpEventID = 40001
+        SomeIpEventGroups = {1}
+	}
 }
 
 define org.genivi.commonapi.someip.deployment for provider as MyService {

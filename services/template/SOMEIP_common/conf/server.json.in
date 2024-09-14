@@ -2,32 +2,32 @@
     "unicast" : "@SOMEIP_HOST_IP@",
     "logging" :
     { 
-        "level" : "debug",
+        "level" : "trace",
         "console" : "true",
         "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
         "dlt" : "false"
     },
-    "applications" : 
+    "applications" :
     [
         {
-            "name" : "EventApp",
+            "name" : "@SERVICE_NAME@",
             "id" : "0x2000"
         }
     ],
     "services" :
     [
         {
-            "service" : "0x2000",
-            "instance" : "0x2000",
-            "unreliable" : "32000",
+            "service" : "@SERVICE_ID@",
+            "instance" : "@INSTANCE_ID@",
+            "unreliable" : "@UDP_PORT_NUM@",
             "reliable" : 
 	    	{
-                "port": "32100",
+                "port": "@TCP_PORT_NUM@",
 				"enable-magic-cookies": "false"
             }
         }
     ],
-    "routing" : "EventApp",
+    "routing" : "routingmanagerd",
     "service-discovery" :
     {
         "enable" : "true",

@@ -2,13 +2,13 @@
 #include <string>
 #include <unistd.h>
 #include <CommonAPI/CommonAPI.hpp>
-#include <v1/commonapi/VehicleGearProxy.hpp>
+#include <v1/commonapi/@SERVICE_NAME@Proxy.hpp>
 
 using namespace v1::commonapi;
 
 int main() {
     std::shared_ptr < CommonAPI::Runtime > runtime = CommonAPI::Runtime::get();
-    std::shared_ptr<VehicleGearProxy<>> myProxy = runtime->buildProxy<VehicleGearProxy>("local", "test");
+    std::shared_ptr<@SERVICE_NAME@Proxy<>> myProxy = runtime->buildProxy<@SERVICE_NAME@Proxy>("local", "test");
 
     // START modification
     // I ran into a NULL myProxy on older versions (possibly a version
@@ -16,7 +16,7 @@ int main() {
     // only change compared to the original "10 minutes" example
     if (!myProxy)
     {
-       std::cerr << "VehicleGearClient FAIL: Returned  proxy is NULL! - Giving up!\n";
+       std::cerr << "@SERVICE_NAME@Client FAIL: Returned  proxy is NULL! - Giving up!\n";
        return 2;
     }
     // END modification
@@ -29,12 +29,13 @@ int main() {
     CommonAPI::CallStatus callStatus;
     int retVal;
 
-    myProxy->getGearEvent().subscribe([&](const int & event) {
-        std::cout << "[Event-normal] Received VehicleGear event: " << event << std::endl;
+    // [todo] need to work according to the generated API
+    myProxy->get@EVENT_NAME@Event().subscribe([&](const int & event) {
+        std::cout << "[@SERVICE_NAME@][Client] Received @SERVICE_NAME@ event: " << event << std::endl;
     });
 
     while(true) {
-        std::cout << "[VehicleGearClient] while loop... in main thread" << std::endl;
+        std::cout << "[@SERVICE_NAME@][Client] while loop... in main thread" << std::endl;
         usleep(1000000); // 1s
     }
 
