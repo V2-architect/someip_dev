@@ -62,8 +62,11 @@ def main(svc_name, svc_type):
 
 		for target in replace_target:
 			service_text = service_info[target]
-			if target.endswith("_ID"):
+
+			# [NOTE] exceptional logic...
+			if target != 'EVENT_ID' and target.endswith("_ID"):
 				service_text = f"0x{service_text.zfill(4)}"
+
 			#if target == 'SERVICE_NAME':
 			#	pdb.set_trace()
 			#logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
