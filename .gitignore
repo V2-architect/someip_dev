@@ -1,6 +1,6 @@
 dependencies
 tools
 build/*
-release/*
+**/release
 **/build
 **/src-gen
