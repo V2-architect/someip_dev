@@ -17,7 +17,7 @@
     "services" :
     [
         {
-            "service" : "@SERVICE_ID",
+            "service" : "@SERVICE_ID@",
             "instance" : "@INSTANCE_ID@",
             "unreliable" : "@UDP_PORT_NUM@",
             "reliable" :

@@ -4,13 +4,13 @@ interface @SERVICE_NAME@ {
   version {major 1 minor 0}
 
   method @METHOD_NAME@ {
-    // exmaple
+    // [todo]
     in  { Int32 param_in }
     out { Int32 param_out }
   }
 
   broadcast @EVENT_NAME@ {
-    // example
+    // [todo]
     out { Int32 gear }
   }
 

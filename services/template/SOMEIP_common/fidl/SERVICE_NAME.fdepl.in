@@ -5,12 +5,12 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.@SERVICE_N
 	SomeIpServiceID = @SERVICE_ID@
 
 	method @METHOD_NAME@ {
-		// example
+		// [todo]
 		SomeIpMethodID = 2
 	}
 
 	broadcast @EVENT_NAME@ {
-		// example
+		// [todo]
 		SomeIpEventID = 40001
         SomeIpEventGroups = {1}
 	}

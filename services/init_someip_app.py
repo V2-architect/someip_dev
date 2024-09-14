@@ -39,7 +39,7 @@ def main(svc_name, svc_type):
 	replace_target = [
 		"EVENTGROUP_MULTICAST_IP",
 		"EVENTGROUP_MULTICAST_PORT_NUM",
-		"EVENT_GROUP",
+		"EVENTGROUP_ID",
 		"EVENT_ID",
 		"EVENT_NAME",
 		"INSTANCE_ID",
@@ -55,8 +55,10 @@ def main(svc_name, svc_type):
 	for f in files:
 		for target in replace_target:
 			service_text = service_info[target]
-			if target == 'SERVICE_NAME':
-				pdb.set_trace()
+			if target.endswith("_ID"):
+				service_text = f"0x{service_text.zfill(4)}"
+			#if target == 'SERVICE_NAME':
+			#	pdb.set_trace()
 			logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
 			os.system(f"sed -i s,@{target}@,{service_text},g {f}")
 
