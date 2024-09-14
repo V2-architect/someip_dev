@@ -1,6 +1,7 @@
 import argparse
 import os
 import logging
+import json
 import pdb
 logging.basicConfig(level=logging.INFO, format='[AUTO-IDS][%(asctime)s] %(message)s', datefmt='%y%m%d-%H%M%S')
 
@@ -22,6 +23,9 @@ def main(svc_name, svc_type):
 
 
 	# [2] replace template variables with service specific term
+	service_spec = json.loads(open("template/service_info/someip_service_spec.json").read())
+	service_info = service_spec[svc_name]
+
 	# [2-1] file name change
 	os.chdir(f"{svc_name}")
 	files = os.popen(f'find . -name "SERVICE_NAME*"').read().strip().split("\n")
@@ -32,8 +36,29 @@ def main(svc_name, svc_type):
 
 	# [2-2] file content change
 	files = os.popen("find . -type f").read().strip().split("\n")
+	replace_target = [
+		"EVENTGROUP_MULTICAST_IP",
+		"EVENTGROUP_MULTICAST_PORT_NUM",
+		"EVENT_GROUP",
+		"EVENT_ID",
+		"EVENT_NAME",
+		"INSTANCE_ID",
+		"METHOD_ID",
+		"METHOD_NAME",
+		"SERVICE_ID",
+		"SERVICE_NAME",
+		"TCP_PORT_NUM",
+		"UDP_PORT_NUM",
+		"UNIX_DOMAIN_SOCKET_PATH"
+	]
+
 	for f in files:
-		sed s/@SERVICE_NAME@/
+		for target in replace_target:
+			service_text = service_info[target]
+			if target == 'SERVICE_NAME':
+				pdb.set_trace()
+			logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
+			os.system(f"sed -i s,@{target}@,{service_text},g {f}")
 
 	
 	
