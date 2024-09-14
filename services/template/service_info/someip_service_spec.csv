@@ -1,0 +1,16 @@
+SERVICE_CATEGORY,SERVICE_NAME,SERVICE_ID,INSTANCE_ID,DATA_CATEGORY,SOMEIP_COMM_TYPE,METHOD_NAME,METHOD_ID,EVENT_NAME,EVENT_ID,EVENT_GROUP,TIME_INTERVAL,TRANSPORT_PROTOCOL,UDP_PORT_NUM,TCP_PORT_NUM,EVENTGROUP_MULTICAST_IP,EVENTGROUP_MULTICAST_PORT_NUM,VLAN,UNIX_DOMAIN_SOCKET_PATH
+Vehicle,VehicleSpeed,1000,1,Safety-related control,event,x,x,vehicleSpeedAxis,1001,1000,20,udp,31000,41000,239.10.0.10,31000,1,/tmp/uds_vehicle_speed.sock
+Vehicle,VehiclePose,1001,1,Safety-related control,event,x,x,vehiclePosition,1001,1000,20,udp,31001,41001,239.10.0.10,31001,1,/tmp/uds_vehicle_pose.sock
+Vehicle,VehiclePose,1001,1,Safety-related control,event,x,x,angularVelocity,1002,1000,20,udp,31001,41001,239.10.0.10,31001,1,/tmp/uds_vehicle_pose.sock
+Vehicle,VehicleAccel,1002,1,Safety-related control,event,x,x,accelAxis,1001,1000,20,udp,31002,41002,239.10.0.10,31002,1,/tmp/uds_vehicle_accel.sock
+Vehicle,VehicleLocation,1003,1,Safety-irrelated control,event,x,x,locationInfo,1001,1000,200,udp,31003,41003,239.10.0.10,31003,1,/tmp/uds_vehicle_location.sock
+Chassis,Transmission,2000,1,Safety-related control,event,x,x,gearStatus,2001,2000,20,udp,32000,42000,239.10.0.12,32000,2,/tmp/uds_vehicle_transmission.sock
+Chassis,Driving,2001,1,Safety-related control,event,x,x,accelStatus,2001,2000,20,udp,32001,42001,239.10.0.12,32001,2,/tmp/uds_driving.sock
+Chassis,Driving,2001,1,Safety-related control,event,x,x,brakeStatus,2002,2000,20,udp,32001,42001,239.10.0.12,32001,2,/tmp/uds_driving.sock
+Chassis,SteeringWheel,2004,1,Safety-related control,event,x,x,steeringWheelStatus,2001,2000,20,udp,32004,42004,239.10.0.12,32004,2,/tmp/uds_steeringwheel.sock
+ADAS,TrafficLight,3000,1,Safety-irrelated control,event,x,x,trafficLightStatus,3001,3000,200,udp,33000,43000,239.10.0.13,33000,3,/tmp/uds_trafficlight.sock
+ADAS,Intersection,3001,1,Safety-irrelated control,event,x,x,intersectionInfo,3001,3000,200,udp,33001,43001,239.10.0.13,33001,3,/tmp/uds_intersection.sock
+ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,objectType,3001,3000,20,udp,33002,43002,239.10.0.13,33002,3,/tmp/uds_objectdetection.sock
+ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,objectVelocityAxis,3002,3000,20,udp,33002,43002,239.10.0.13,33002,3,/tmp/uds_objectdetection.sock
+ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,objectAccelAxis,3003,3000,20,udp,33002,43002,239.10.0.13,33002,3,/tmp/uds_objectdetection.sock
+ADAS,Collision,3003,1,Safety-related control,event,x,x,objectType,3001,3000,20,udp,33003,43003,239.10.0.13,33003,3,/tmp/uds_collision.sock

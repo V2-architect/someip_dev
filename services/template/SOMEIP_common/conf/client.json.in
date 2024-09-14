@@ -17,14 +17,24 @@
     "services" :
     [
         {
-            "service" : "@SERVICE_ID@",
+            "service" : "@SERVICE_ID",
             "instance" : "@INSTANCE_ID@",
             "unreliable" : "@UDP_PORT_NUM@",
-            "reliable" : 
-	    	{
+            "reliable" :
+                {
                 "port": "@TCP_PORT_NUM@",
-				"enable-magic-cookies": "false"
-            }
+                "enable-magic-cookies": "false"
+            },
+            "eventgroups": [
+                {
+                    "eventgroup": "@EVENTGROUP_ID@",
+                    "multicast": {
+                        "address": "@EVENTGROUP_MULTICAST_IP@",
+                        "port": "@EVENTGROUP_MULTICAST_PORT_NUM@"
+                    },
+                    "threshold": 1
+                }
+            ]
         }
     ],
     "clients" :
@@ -33,7 +43,7 @@
             "reliable_client_ports": {"first": "32100", "last": "32110"},
             "reliable_remote_ports": {"first": "32100", "last": "32110"}
         }
-    ],  
+    ], 
     "routing" : "routingmanagerd",
     "service-discovery" :
     {
