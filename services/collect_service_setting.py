@@ -3,7 +3,7 @@ import os
 import json
 import pdb
 
-server_json_files = os.popen("find . -name server.json.in").read().strip().split("\n")
+server_json_files = os.popen("find */conf -name server.json.in").read().strip().split("\n")
 
 service_infos = []
 for server_json in server_json_files:
