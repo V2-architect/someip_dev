@@ -8,6 +8,12 @@ if [ -z "$1" ]; then
     exit -1
 fi
 
+# set curr_path to script_path
+CURR_SH_PATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+cd ${CURR_SH_PATH}
+sleep 10
+
+
 # get data from user input
 HOSTNAME=$(hostname)
 SOMEIP_HOST_IP=`cat ../routingmanager/host_ip.txt | grep $(hostname) | awk -F: '{print $2}'`
