@@ -10,7 +10,7 @@ fi
 
 # get data from user input
 HOSTNAME=$(hostname)
-SOMEIP_HOST_IP=`cat host_ip.txt | grep $(hostname) | awk -F: '{print $2}'`
+SOMEIP_HOST_IP=`cat ../routingmanager/host_ip.txt | grep $(hostname) | awk -F: '{print $2}'`
 TRANSPORT_PROTOCOL=$1
 
 DEV_MODE="n"
@@ -39,8 +39,8 @@ fi
 # check prerequisite
 ./pre_check.py ${APP_LD_LIBRARY_PATH}
 
-CONF_FILE_TEMPLATE=${APP_ROOT}/server_$TRANSPORT_PROTOCOL.json.in
-CONF_FILE=${APP_ROOT}/server_$TRANSPORT_PROTOCOL.json
+CONF_FILE_TEMPLATE=${APP_ROOT}/server.json.in
+CONF_FILE=${APP_ROOT}/server.json
 
 echo "==========================================="
 echo "============= SOME/IP Client =============="
