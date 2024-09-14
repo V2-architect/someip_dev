@@ -17,7 +17,7 @@ def main(svc_name, svc_type):
 	os.system(f"cp -rf template/SOMEIP_{svc_type}/* {svc_name}/")
 
 	os.chdir(f"{svc_name}")
-	for script in ['build.sh', 'gen_code.sh', 'deploy.py']:
+	for script in ['build.sh', 'gen_code.sh', 'deploy.py', 'release.py']:
 		os.system(f"ln -sf ../{script} ./{script}")
 	os.chdir(curr_path)
 
@@ -54,20 +54,19 @@ def main(svc_name, svc_type):
 
 	for f in files:
 		f_out = ""
-		if f.endswith(".in"):
+		if f.endswith("fidl.in") or f.endswith("fdepl.in"):
 			f_out = f.replace(".in", "")
+			os.system(f"mv {f} {f_out}")
+			f = f_out
+
 		for target in replace_target:
 			service_text = service_info[target]
 			if target.endswith("_ID"):
 				service_text = f"0x{service_text.zfill(4)}"
 			#if target == 'SERVICE_NAME':
 			#	pdb.set_trace()
-			if not bool(f_out):
-				logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
-				os.system(f"sed -i s,@{target}@,{service_text},g {f}")
-			else:
-				logging.info(f"sed s,@{target}@,{service_text},g {f} > {f_out}")
-				os.system(f"sed s,@{target}@,{service_text},g {f} > {f_out}")
+			logging.info(f"sed -i s,@{target}@,{service_text},g {f}")
+			os.system(f"sed -i s,@{target}@,{service_text},g {f}")
 
 	
 	
