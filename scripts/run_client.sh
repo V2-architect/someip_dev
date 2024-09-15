@@ -2,16 +2,22 @@
 
 if [ -z "$1" ]; then
     echo "[Error] input the argument like below"
-    echo "  $ $0 <TRANS_PROTOCOL>"
-    echo "  $ $0 tcp"
-    echo "  $ $0 udp"
+    echo "  $ $0 <TRANS_PROTOCOL> [<delay(second),default(5s)>]"
+    echo "  $ $0 tcp 5"
+    echo "  $ $0 udp 5"
     exit -1
 fi
 
 # set curr_path to script_path
 CURR_SH_PATH=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 cd ${CURR_SH_PATH}
-sleep 10
+
+LAUNCH_DELAY=$2
+if [ -z "$2" ]; then
+	LAUNCH_DELAY=5
+fi
+echo "LAUNCH_DELAY: "${LAUNCH_DELAY}
+sleep ${LAUNCH_DELAY}
 
 
 # get data from user input
