@@ -27,6 +27,7 @@ void delay_ms(int delay) {
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 }
 
+// [todo]
 // [example]: const char* socket_path = "/root/someip_app/tmp/uds_vehicle_speed";
 const char* socket_path = "@UNIX_DOMAIN_SOCKET_PATH@";
 int server_socket = -1;
@@ -92,6 +93,7 @@ void socket_thread() {
 
     log_message("Server is listening");
 
+	int count = 0;
     while (running) {
         int client_socket = accept(server_socket, nullptr, nullptr);
         if (client_socket < 0) {
@@ -104,16 +106,23 @@ void socket_thread() {
         log_message("Client connected");
 
         while (running) {
+			count++;
             // [todo] need to update according to the generated API ----------- START
             ssize_t bytes_received = recv(client_socket, vehicle_speed_data, sizeof(vehicle_speed_data), 0);
             if (bytes_received <= 0) {
                 break;
             }
 
-            std::stringstream ss;
-            ss << "Received: " << vehicle_speed_data[0] << ", " << vehicle_speed_data[1] << ", " << vehicle_speed_data[2];
-            // [todo] need to update according to the generated API ----------- END
-            log_message(ss.str());
+			// [todo] update vehicle data array
+			if (count % 50 == 0) {
+				std::stringstream ss;
+				ss << "Received: " << vehicle_speed_data[0] << " | " << vehicle_speed_data[1] << " | " << vehicle_speed_data[2]
+								   << vehicle_speed_data[3] << " | " << vehicle_speed_data[4] << " | " << vehicle_speed_data[5];
+				count = 0;
+
+				// [todo] need to update according to the generated API ----------- END
+				log_message(ss.str());
+			}
         }
 
         close(client_socket);
@@ -122,6 +131,30 @@ void socket_thread() {
 
     close(server_socket);
     unlink(socket_path);
+}
+
+// todo
+void send_vehicle_position(std::shared_ptr<@SERVICE_NAME@StubImpl> myService) {
+    while (true) {
+		// vehicle position
+		myService->fire@EVENT_NAME@Event(
+			vehicle_speed_data[0], vehicle_speed_data[1], vehicle_speed_data[2]);
+
+        //delay(1);
+        usleep(20000); // 20ms
+    }
+}
+
+// todo
+void send_angular_velocity(std::shared_ptr<@SERVICE_NAME@StubImpl> myService) {
+    while (true) {
+		// vehicle angular velocity
+        myService->fire@EVENT_NAME@Event(
+			vehicle_speed_data[3], vehicle_speed_data[4], vehicle_speed_data[5]);
+
+        //delay(1);
+        usleep(20000); // 20ms
+    }
 }
  
 int main() {
@@ -138,11 +171,14 @@ int main() {
     runtime->registerService("local", "test", myService);
     std::cout << "Successfully Registered Service!" << std::endl;
 
+	// todo
+	// sending thread
+	std::thread th1(send_vehicle_position, myService);
+	std::thread th2(send_angular_velocity, myService);
+
     while (true) {
-        // [todo] need to update according to the generated API
-        myService->fire@EVENT_NAME@Event(vehicle_speed_data[0], vehicle_speed_data[1], vehicle_speed_data[2]);
+		std::cout << "[@SERVICE_NAME@] main thread .... time interval(1s)" << std::endl;
         delay(1);
-        //usleep(20000); // 20ms
     }
  
     return 0;

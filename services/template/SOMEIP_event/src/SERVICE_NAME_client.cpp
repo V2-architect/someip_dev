@@ -29,9 +29,17 @@ int main() {
     CommonAPI::CallStatus callStatus;
     int retVal;
 
+	int count = 0;
     // [todo] need to work according to the generated API
-    myProxy->get@EVENT_NAME@Event().subscribe([&](const int & event) {
-        std::cout << "[@SERVICE_NAME@][Client] Received @SERVICE_NAME@ event: " << event << std::endl;
+    myProxy->get@EVENT_NAME@Event().subscribe([&](const float & event1, const float & event2, const float & event3) {
+		count++;
+		if(count % 50 == 0) { // 20ms x 50 = 1s
+			std::cout << "[@SERVICE_NAME@][Client] Received @SERVICE_NAME@ event: " << std::endl;
+			std::cout << "[@SERVICE_NAME@][Client] accel_x: " << accel_x <<
+											  ", accel_y: " << accel_y <<
+											  ", accel_z: " << accel_z << std::endl;
+			count = 0;
+		}
     });
 
     while(true) {
