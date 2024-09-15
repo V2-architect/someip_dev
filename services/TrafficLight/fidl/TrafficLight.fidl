@@ -1,0 +1,14 @@
+package commonapi
+ 
+interface TrafficLight {
+  version {major 1 minor 0}
+
+  broadcast TrafficLightStatus {
+    out { 
+      Int32 trafficlight_type
+      Int32 trafficlight_status
+    }
+  }
+
+} 
+

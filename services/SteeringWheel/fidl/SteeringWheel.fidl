@@ -1,0 +1,11 @@
+package commonapi
+ 
+interface SteeringWheel {
+  version {major 1 minor 0}
+
+  broadcast SteeringWheelStatus {
+    out { Float steerwheel_deg }
+  }
+
+} 
+

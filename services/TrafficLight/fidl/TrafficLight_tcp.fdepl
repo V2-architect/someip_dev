@@ -1,0 +1,19 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "TrafficLight.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.TrafficLight {
+	SomeIpServiceID = 0x3000
+
+	broadcast TrafficLightStatus {
+		SomeIpEventID = 43001
+        SomeIpEventGroups = {0x300}
+		SomeIpReliable = true
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.TrafficLight {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}

@@ -1,0 +1,15 @@
+package commonapi
+ 
+interface Driving {
+  version {major 1 minor 0}
+
+  broadcast AccelStatus {
+    out { Float accel }
+  }
+
+  broadcast BrakeStatus {
+    out { Float brake }
+  }
+
+} 
+

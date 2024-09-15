@@ -1,0 +1,31 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "ObjectDetection.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.ObjectDetection {
+	SomeIpServiceID = 0x3002
+
+	broadcast ObjectType {
+		SomeIpEventID = 43001
+        SomeIpEventGroups = {0x0300}
+		SomeIpReliable = true
+	}
+
+	broadcast ObjectVelocityAxis {
+		SomeIpEventID = 43002
+        SomeIpEventGroups = {0x0300}
+		SomeIpReliable = true
+	}
+
+	broadcast ObjectAccelAxis {
+		SomeIpEventID = 43003
+        SomeIpEventGroups = {0x0300}
+		SomeIpReliable = true
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.ObjectDetection {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}

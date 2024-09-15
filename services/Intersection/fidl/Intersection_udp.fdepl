@@ -1,0 +1,18 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "Intersection.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.Intersection {
+	SomeIpServiceID = 0x3001
+
+	broadcast IntersectionInfo {
+		SomeIpEventID = 43001
+        SomeIpEventGroups = {0x0300}
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.Intersection {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}

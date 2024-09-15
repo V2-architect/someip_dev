@@ -1,0 +1,25 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "Driving.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.Driving {
+	SomeIpServiceID = 0x2001
+
+	broadcast AccelStatus {
+		SomeIpEventID = 42001
+        SomeIpEventGroups = {0x0200}
+		SomeIpReliable = true
+	}
+
+	broadcast BrakeStatus {
+		SomeIpEventID = 42002
+        SomeIpEventGroups = {0x0200}
+		SomeIpReliable = true
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.Driving {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}
