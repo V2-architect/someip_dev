@@ -1,0 +1,55 @@
+{
+    "unicast" : "@SOMEIP_HOST_IP@",
+    "logging" :
+    { 
+        "level" : "trace",
+        "console" : "true",
+        "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
+        "dlt" : "false"
+    },
+    "applications" :
+    [
+        {
+            "name" : "Transmission",
+            "id" : "0x2000"
+        }
+    ],
+    "services" :
+    [
+        {
+            "service" : "0x2000",
+            "instance" : "0x0001",
+            "unreliable" : "32000",
+            "reliable" :
+                {
+                "port": "42000",
+                "enable-magic-cookies": "false"
+            },
+            "eventgroups": [
+                {
+                    "eventgroup": "0x0200",
+                    "multicast": {
+                        "address": "239.10.0.12",
+                        "port": "32200"
+                    },
+                    "threshold": 1
+                }
+            ]
+        }
+    ],
+    "routing" : "routingmanagerd",
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "239.10.0.1",
+        "port" : "30490",
+        "protocol" : "udp",
+        "initial_delay_min" : "10",
+        "initial_delay_max" : "100",
+        "repetitions_base_delay" : "200",
+        "repetitions_max" : "3",
+        "ttl" : "3",
+        "cyclic_offer_delay" : "2000",
+        "request_response_delay" : "1500"
+    }
+}

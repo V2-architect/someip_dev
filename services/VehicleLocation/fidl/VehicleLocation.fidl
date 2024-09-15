@@ -1,0 +1,15 @@
+package commonapi
+ 
+interface VehicleLocation {
+  version {major 1 minor 0}
+
+  broadcast LocationInfo {
+    out { 
+	  Float latitude
+      Float longitude
+      Float altitude
+	}
+  }
+
+} 
+

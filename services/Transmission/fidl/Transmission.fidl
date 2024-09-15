@@ -1,0 +1,11 @@
+package commonapi
+ 
+interface Transmission {
+  version {major 1 minor 0}
+
+  broadcast GearStatus {
+    out { Int32 gear }
+  }
+
+} 
+
