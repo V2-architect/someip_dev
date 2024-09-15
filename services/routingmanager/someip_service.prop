@@ -1,0 +1,2 @@
+SERVICE_NAME=routingmanager
+MULTICAST_IP=239.10.0.1
