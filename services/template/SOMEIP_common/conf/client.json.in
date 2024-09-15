@@ -11,7 +11,7 @@
     [
         {
             "name" : "@SERVICE_NAME@",
-            "id" : "0x2000"
+            "id" : "@SERVICE_ID@"
         }
     ],
     "services" :

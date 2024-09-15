@@ -11,7 +11,7 @@
     [
         {
             "name" : "VehicleLocation",
-            "id" : "0x2000"
+            "id" : "0x1003"
         }
     ],
     "services" :
