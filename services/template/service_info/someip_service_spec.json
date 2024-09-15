@@ -18,7 +18,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31100",
         "VLAN": "1",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_vehicle_speed"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_speed"
     },
     "VehiclePose": {
         "SERVICE_CATEGORY": "Vehicle",
@@ -39,7 +39,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31101",
         "VLAN": "1",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_vehicle_pose"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_pose"
     },
     "VehicleAccel": {
         "SERVICE_CATEGORY": "Vehicle",
@@ -60,7 +60,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31102",
         "VLAN": "1",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_vehicle_accel"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_accel"
     },
     "VehicleLocation": {
         "SERVICE_CATEGORY": "Vehicle",
@@ -81,7 +81,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31103",
         "VLAN": "1",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_vehicle_location"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_location"
     },
     "Transmission": {
         "SERVICE_CATEGORY": "Chassis",
@@ -102,7 +102,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.12",
         "EVENTGROUP_MULTICAST_PORT_NUM": "32200",
         "VLAN": "2",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_vehicle_transmission"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_transmission"
     },
     "Driving": {
         "SERVICE_CATEGORY": "Chassis",
@@ -123,7 +123,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.12",
         "EVENTGROUP_MULTICAST_PORT_NUM": "32201",
         "VLAN": "2",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_driving"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_driving"
     },
     "SteeringWheel": {
         "SERVICE_CATEGORY": "ADAS",
@@ -144,7 +144,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.12",
         "EVENTGROUP_MULTICAST_PORT_NUM": "32204",
         "VLAN": "2",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_steeringwheel"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_steeringwheel"
     },
     "TrafficLight": {
         "SERVICE_CATEGORY": "ADAS",
@@ -165,7 +165,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.13",
         "EVENTGROUP_MULTICAST_PORT_NUM": "33300",
         "VLAN": "3",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_trafficlight"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_trafficlight"
     },
     "Intersection": {
         "SERVICE_CATEGORY": "ADAS",
@@ -186,7 +186,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.13",
         "EVENTGROUP_MULTICAST_PORT_NUM": "33301",
         "VLAN": "3",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_intersection"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_intersection"
     },
     "ObjectDetection": {
         "SERVICE_CATEGORY": "",
@@ -207,7 +207,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.13",
         "EVENTGROUP_MULTICAST_PORT_NUM": "33302",
         "VLAN": "3",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_objectdetection"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_objectdetection"
     },
     "Collision": {
         "SERVICE_CATEGORY": "",
@@ -228,6 +228,6 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.0.13",
         "EVENTGROUP_MULTICAST_PORT_NUM": "33303",
         "VLAN": "3",
-        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds_collision"
+        "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_collision"
     }
 }
