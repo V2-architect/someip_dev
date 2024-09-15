@@ -27,9 +27,13 @@ void delay_ms(int delay) {
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 }
 
-const char* socket_path = "/root/someip_app/tmp/uds_vehicle_speed";
+// [example]: const char* socket_path = "/root/someip_app/tmp/uds_vehicle_speed";
+const char* socket_path = "/tmp/uds/uds_vehicle_speed";
 int server_socket = -1;
 std::atomic<bool> running(true);
+
+// [todo] need to update according to the generated API
+// [todo] shared data(global variable) between socket thread and main thread
 float vehicle_speed_data[3] = {0.0, 0.0, 0.0};
 
 void cleanup_and_exit(int signum) {
@@ -57,7 +61,6 @@ std::string get_current_time() {
 void log_message(const std::string& message) {
     std::cout << get_current_time() << " " << message << std::endl;
 }
-
 
 void socket_thread() {
     // remove existing socket file
@@ -89,6 +92,7 @@ void socket_thread() {
 
     log_message("Server is listening");
 
+	int count = 0;
     while (running) {
         int client_socket = accept(server_socket, nullptr, nullptr);
         if (client_socket < 0) {
@@ -101,14 +105,22 @@ void socket_thread() {
         log_message("Client connected");
 
         while (running) {
+			count++;
+            // [todo] need to update according to the generated API ----------- START
             ssize_t bytes_received = recv(client_socket, vehicle_speed_data, sizeof(vehicle_speed_data), 0);
             if (bytes_received <= 0) {
                 break;
             }
 
-            std::stringstream ss;
-            ss << "Received: " << vehicle_speed_data[0] << ", " << vehicle_speed_data[1] << ", " << vehicle_speed_data[2];
-            log_message(ss.str());
+			// [todo] update vehicle data array
+			if (count % 50 == 0) {
+				std::stringstream ss;
+				ss << "Received: " << vehicle_speed_data[0] << " | " << vehicle_speed_data[1] << " | " << vehicle_speed_data[2];
+				count = 0;
+
+				// [todo] need to update according to the generated API ----------- END
+				log_message(ss.str());
+			}
         }
 
         close(client_socket);
@@ -117,6 +129,18 @@ void socket_thread() {
 
     close(server_socket);
     unlink(socket_path);
+}
+
+// todo
+void send_vehicle_speed(std::shared_ptr<VehicleSpeedStubImpl> myService) {
+    while (true) {
+		// vehicle position
+		myService->fireVehicleSpeedAxisEvent(
+			vehicle_speed_data[0], vehicle_speed_data[1], vehicle_speed_data[2]);
+
+        //delay(1);
+        usleep(20000); // 20ms
+    }
 }
  
 int main() {
@@ -133,10 +157,13 @@ int main() {
     runtime->registerService("local", "test", myService);
     std::cout << "Successfully Registered Service!" << std::endl;
 
+	// todo
+	// sending thread
+	std::thread th1(send_vehicle_speed, myService);
+
     while (true) {
-        myService->fireVehicle_speed_axisEvent(vehicle_speed_data[0], vehicle_speed_data[1], vehicle_speed_data[2]);
+		std::cout << "[VehicleSpeed] main thread .... time interval(1s)" << std::endl;
         delay(1);
-        //usleep(20000); // 20ms
     }
  
     return 0;

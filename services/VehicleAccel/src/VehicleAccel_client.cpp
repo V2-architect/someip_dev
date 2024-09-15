@@ -29,12 +29,17 @@ int main() {
     CommonAPI::CallStatus callStatus;
     int retVal;
 
+	int count = 0;
     // [todo] need to work according to the generated API
     myProxy->getAccelAxisEvent().subscribe([&](const float & accel_x, const float & accel_y, const float & accel_z) {
-        std::cout << "[VehicleAccel][Client] Received VehicleAccel event: " << accel_x << std::endl;
-        std::cout << "[VehicleAccel][Client] accel_x: " << accel_x <<
-                                          ", accel_y: " << accel_y <<
-                                          ", accel_z: " << accel_z << std::endl;
+		count++;
+		if(count % 50 == 0) { // 20ms x 50 = 1s
+			std::cout << "[VehicleAccel][Client] Received VehicleAccel event: " << accel_x << std::endl;
+			std::cout << "[VehicleAccel][Client] accel_x: " << accel_x <<
+											  ", accel_y: " << accel_y <<
+											  ", accel_z: " << accel_z << std::endl;
+			count = 0;
+		}
     });
 
     while(true) {

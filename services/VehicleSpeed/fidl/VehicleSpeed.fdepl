@@ -1,19 +1,18 @@
-//import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-SOMEIP_deployment_spec.fdepl"
 import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
 import "VehicleSpeed.fidl"
 
 define org.genivi.commonapi.someip.deployment for interface commonapi.VehicleSpeed {
-	SomeIpServiceID = 0x2001
+	SomeIpServiceID = 0x1000
 
-	broadcast vehicle_speed_axis {
-		SomeIpEventID = 40001
-        SomeIpEventGroups = {1}
+	broadcast VehicleSpeedAxis {
+		SomeIpEventID = 41001
+        SomeIpEventGroups = {0x0100}
 	}
 }
 
 define org.genivi.commonapi.someip.deployment for provider as MyService {
 	instance commonapi.VehicleSpeed {
 		InstanceId = "test"
-		SomeIpInstanceID = 0x2001
+		SomeIpInstanceID = 0x0001
 	}
 }

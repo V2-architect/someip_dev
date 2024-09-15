@@ -29,18 +29,21 @@ int main() {
     CommonAPI::CallStatus callStatus;
     int retVal;
 
-    int count = 0;
-    myProxy->getVehicle_speed_axisEvent().subscribe([&](const float & speed_x, const float & speed_y, const float & speed_z) {
-        //count++;
-        //if (count == 50)
-            std::cout << "[Event] VehicleSpeed_x: " << speed_x <<
-                         ", VehicleSpeed_y: " << speed_y <<
-                         ", VehicleSpeed_z: " << speed_z << std::endl;
-  
+	int count = 0;
+    // [todo] need to work according to the generated API
+    myProxy->getVehicleSpeedAxisEvent().subscribe([&](const float & v_speed_x, const float & v_speed_y, const float & v_speed_z) {
+		count++;
+		if(count % 50 == 0) { // 20ms x 50 = 1s
+			std::cout << "[VehicleSpeed][Client] Received VehicleSpeed event: " << std::endl;
+			std::cout << "[VehicleSpeed][Client] v_speed_x: " << v_speed_x <<
+											  ", v_speed_y: " << v_speed_y <<
+											  ", v_speed_z: " << v_speed_z << std::endl;
+			count = 0;
+		}
     });
 
     while(true) {
-        std::cout << "[VehicleSpeedClient] while loop... in main thread" << std::endl;
+        std::cout << "[VehicleSpeed][Client] while loop... in main thread" << std::endl;
         usleep(1000000); // 1s
     }
 

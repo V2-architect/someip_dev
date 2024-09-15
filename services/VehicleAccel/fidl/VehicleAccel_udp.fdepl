@@ -6,7 +6,7 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.VehicleAcc
 
 	broadcast AccelAxis {
 		SomeIpEventID = 41001
-        SomeIpEventGroups = {1}
+        SomeIpEventGroups = {0x0100}
 	}
 }
 

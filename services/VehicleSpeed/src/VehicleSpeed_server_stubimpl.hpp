@@ -1,5 +1,5 @@
-#ifndef VEHICLESPEEDSTUBIMPL_H_
-#define VEHICLESPEEDSTUBIMPL_H_
+#ifndef SOMEIPSERVICESTUBIMPL_H_
+#define SOMEIPSERVICESTUBIMPL_H_
 
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/VehicleSpeedStubDefault.hpp>
@@ -13,4 +13,4 @@ public:
 private:
 };
 
-#endif /* EVENTAPPSTUBIMPL_H_ */
+#endif /* SOMEIPSERVICESTUBIMPL_H_ */

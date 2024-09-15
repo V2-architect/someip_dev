@@ -1,0 +1,23 @@
+package commonapi
+ 
+interface VehiclePose {
+  version {major 1 minor 0}
+
+  broadcast VehiclePosition {
+    out { 
+      Float vehicle_roll
+      Float vehicle_pitch
+      Float vehicle_heading
+    }
+  }
+
+  broadcast AngularVelocity {
+    out { 
+      Float angular_velocity_x
+      Float angular_velocity_y
+      Float angular_velocity_z
+    }
+  }
+
+} 
+

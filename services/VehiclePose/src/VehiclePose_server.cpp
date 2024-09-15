@@ -12,29 +12,29 @@
 #include <atomic>
 
 #include <CommonAPI/CommonAPI.hpp>
-#include "VehicleAccel_server_stubimpl.hpp"
+#include "VehiclePose_server_stubimpl.hpp"
 
  
 using namespace std;
 
 void delay(int delay) {
-	std::cout << "[VehicleAccel] sleep " << delay << "s" << std::endl;
+	std::cout << "[VehiclePose] sleep " << delay << "s" << std::endl;
 	std::this_thread::sleep_for(std::chrono::seconds(delay));
 }
 
 void delay_ms(int delay) {
-	// std::cout << "[VehicleAccel] sleep " << delay << "ms" << std::endl;
+	// std::cout << "[VehiclePose] sleep " << delay << "ms" << std::endl;
     std::this_thread::sleep_for(std::chrono::milliseconds(delay));
 }
 
 // [example]: const char* socket_path = "/root/someip_app/tmp/uds_vehicle_speed";
-const char* socket_path = "/tmp/uds/uds_vehicle_accel";
+const char* socket_path = "/tmp/uds/uds_vehicle_pose";
 int server_socket = -1;
 std::atomic<bool> running(true);
 
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
-float vehicle_accel_data[3] = {0.0, 0.0, 0.0};
+float vehicle_pose_data[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -69,7 +69,7 @@ void socket_thread() {
     // create socket
     server_socket = socket(AF_UNIX, SOCK_STREAM, 0);
     if (server_socket < 0) {
-        log_message("Failed to create socket");
+        log_message("[UDS_SOCKET] Failed to create socket");
         return;
     }
 
@@ -79,49 +79,78 @@ void socket_thread() {
     strncpy(addr.sun_path, socket_path, sizeof(addr.sun_path) - 1);
 
     if (bind(server_socket, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-        log_message("Failed to bind socket");
+        log_message("[UDS_SOCKET] Failed to bind socket");
         close(server_socket);
         return;
     }
 
     if (listen(server_socket, 1) < 0) {
-        log_message("Failed to listen on socket");
+        log_message("[UDS_SOCKET] Failed to listen on socket");
         close(server_socket);
         return;
     }
 
     log_message("Server is listening");
 
+	int count = 0;
     while (running) {
         int client_socket = accept(server_socket, nullptr, nullptr);
         if (client_socket < 0) {
             if (running) {
-                log_message("Failed to accept client connection");
+                log_message("[UDS_SOCKET] Failed to accept client connection");
             }
             continue;
         }
 
-        log_message("Client connected");
+        log_message("[UDS_SOCKET] Client connected");
 
         while (running) {
+			count++;
             // [todo] need to update according to the generated API ----------- START
-            ssize_t bytes_received = recv(client_socket, vehicle_accel_data, sizeof(vehicle_accel_data), 0);
+            ssize_t bytes_received = recv(client_socket, vehicle_pose_data, sizeof(vehicle_pose_data), 0);
             if (bytes_received <= 0) {
                 break;
             }
 
-            std::stringstream ss;
-            ss << "Received: " << vehicle_accel_data[0] << ", " << vehicle_accel_data[1] << ", " << vehicle_accel_data[2];
-            // [todo] need to update according to the generated API ----------- END
-            log_message(ss.str());
+			if (count % 50 == 0) {
+				std::stringstream ss;
+				ss << "Received: " << vehicle_pose_data[0] << " | " << vehicle_pose_data[1] << " | " << vehicle_pose_data[2]
+								   << vehicle_pose_data[3] << " | " << vehicle_pose_data[4] << " | " << vehicle_pose_data[5];
+				count = 0;
+
+				// [todo] need to update according to the generated API ----------- END
+				log_message(ss.str());
+			}
         }
 
         close(client_socket);
-        log_message("Client disconnected");
+        log_message("[UDS_SOCKET] Client disconnected");
     }
 
     close(server_socket);
     unlink(socket_path);
+}
+
+void send_vehicle_position(std::shared_ptr<VehiclePoseStubImpl> myService) {
+    while (true) {
+		// vehicle position
+		myService->fireVehiclePositionEvent(
+			vehicle_pose_data[0], vehicle_pose_data[1], vehicle_pose_data[2]);
+
+        //delay(1);
+        usleep(20000); // 20ms
+    }
+}
+
+void send_angular_velocity(std::shared_ptr<VehiclePoseStubImpl> myService) {
+    while (true) {
+		// vehicle angular velocity
+        myService->fireAngularVelocityEvent(
+			vehicle_pose_data[3], vehicle_pose_data[4], vehicle_pose_data[5]);
+
+        //delay(1);
+        usleep(20000); // 20ms
+    }
 }
  
 int main() {
@@ -134,15 +163,17 @@ int main() {
 
 	// start SOME/IP
     std::shared_ptr<CommonAPI::Runtime> runtime = CommonAPI::Runtime::get();
-    std::shared_ptr<VehicleAccelStubImpl> myService = std::make_shared<VehicleAccelStubImpl>();
+    std::shared_ptr<VehiclePoseStubImpl> myService = std::make_shared<VehiclePoseStubImpl>();
     runtime->registerService("local", "test", myService);
     std::cout << "Successfully Registered Service!" << std::endl;
 
+	// sending thread
+	std::thread th1(send_vehicle_position, myService);
+	std::thread th2(send_angular_velocity, myService);
+
     while (true) {
-        // [todo] need to update according to the generated API
-        myService->fireAccelAxisEvent(vehicle_accel_data[0], vehicle_accel_data[1], vehicle_accel_data[2]);
-        //delay(1);
-        usleep(20000); // 20ms
+		std::cout << "[VehiclePose] main thread .... time interval(1s)" << std::endl;
+        delay(1);
     }
  
     return 0;

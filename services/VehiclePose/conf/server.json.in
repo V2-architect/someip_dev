@@ -10,21 +10,31 @@
     "applications" :
     [
         {
-            "name" : "EventApp",
-            "id" : "0x2000"
+            "name" : "VehiclePose",
+            "id" : "0x1001"
         }
     ],
     "services" :
     [
         {
-            "service" : "0x2000",
-            "instance" : "0x2000",
-            "unreliable" : "32000",
-            "reliable" : 
-	    	{
-                "port": "32100",
-				"enable-magic-cookies": "false"
-            }
+            "service" : "0x1001",
+            "instance" : "0x0001",
+            "unreliable" : "31001",
+            "reliable" :
+                {
+                "port": "41001",
+                "enable-magic-cookies": "false"
+            },
+            "eventgroups": [
+                {
+                    "eventgroup": "0x0100",
+                    "multicast": {
+                        "address": "239.10.0.11",
+                        "port": "31101"
+                    },
+                    "threshold": 1
+                }
+            ]
         }
     ],
     "routing" : "routingmanagerd",

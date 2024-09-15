@@ -3,12 +3,13 @@ package commonapi
 interface VehicleSpeed {
   version {major 1 minor 0}
 
-  broadcast vehicle_speed_axis {
-    out { 
-		Float vehicle_speed_x
-		Float vehicle_speed_y
-		Float vehicle_speed_z
-	}
+  broadcast VehicleSpeedAxis {
+    out {
+      Float vehicle_speed_x
+      Float vehicle_speed_y
+      Float vehicle_speed_z
+    }
   }
+
 } 
 
