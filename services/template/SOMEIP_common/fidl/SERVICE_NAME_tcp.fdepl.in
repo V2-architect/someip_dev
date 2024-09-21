@@ -7,6 +7,7 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.@SERVICE_N
 	method @METHOD_NAME@ {
 		// [todo]
 		SomeIpMethodID = 2
+		SomeIpReliable = true
 	}
 
 	broadcast @EVENT_NAME@ {
