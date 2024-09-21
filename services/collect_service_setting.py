@@ -3,6 +3,10 @@ import os
 import json
 import pdb
 
+'''
+collect all "services" dict data in server.json into "out.json"
+'''
+
 server_json_files = os.popen("find */conf -name server.json.in").read().strip().split("\n")
 
 service_infos = []

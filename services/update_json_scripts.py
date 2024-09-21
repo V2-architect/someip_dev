@@ -1,4 +1,11 @@
+#-*- encoding=utf-8 -*-
 import os
+import pdb
+
+'''
+(1) copy *.json file under service_tmp/ -> service/ (conf/, build/ release/)
+(2) copy ../scripts/* -> service/ (build/, release/)
+'''
 
 SERVICE_NAMES = ["Collision", "Driving", "Intersection", "ObjectDetection", "SteeringWheel", "TrafficLight", "Transmission", "VehicleAccel", "VehicleLocation", "VehiclePose", "VehicleSpeed"]
 
