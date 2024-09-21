@@ -43,7 +43,7 @@ fi
 ./pre_check.py ${APP_LD_LIBRARY_PATH}
 
 CONF_FILE_TEMPLATE=${APP_ROOT}/routingmanagerd.json.in
-CONF_FILE=${APP_ROOT}/routingmanagerd.json
+CONF_FILE=${APP_ROOT}/routingmanagerd-${HOSTNAME}.json
 
 echo "==========================================="
 echo "============= SOME/IP Client =============="

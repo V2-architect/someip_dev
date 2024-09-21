@@ -52,7 +52,7 @@ fi
 ./pre_check.py ${APP_LD_LIBRARY_PATH}
 
 CONF_FILE_TEMPLATE=${APP_ROOT}/server.json.in
-CONF_FILE=${APP_ROOT}/server.json
+CONF_FILE=${APP_ROOT}/server-${HOSTNAME}.json
 
 echo "==========================================="
 echo "============= SOME/IP Client =============="

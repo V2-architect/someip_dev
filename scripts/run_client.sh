@@ -54,7 +54,7 @@ fi
 #CONF_FILE_TEMPLATE=${APP_ROOT}/client_$TRANSPORT_PROTOCOL.json.in
 #CONF_FILE=${APP_ROOT}/client_$TRANSPORT_PROTOCOL.json
 CONF_FILE_TEMPLATE=${APP_ROOT}/client.json.in
-CONF_FILE=${APP_ROOT}/client.json
+CONF_FILE=${APP_ROOT}/client-${HOSTNAME}.json
 
 
 
