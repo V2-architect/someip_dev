@@ -41,7 +41,7 @@
     "service-discovery" :
     {
         "enable" : "true",
-        "multicast" : "239.10.0.1",
+        "multicast" : "@ROUTING_MULTICAST_IP@",
         "port" : "30490",
         "protocol" : "udp",
         "initial_delay_min" : "10",
