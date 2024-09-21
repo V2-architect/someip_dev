@@ -36,6 +36,7 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 int32_t intersection_data[2] = {0, 0};
+int32_t IntersectionInfo_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -139,7 +140,7 @@ void send_intersection_data(std::shared_ptr<IntersectionStubImpl> myService) {
 		myService->fireIntersectionInfoEvent(intersection_data[0], intersection_data[1]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(IntersectionInfo_interval); // 200ms
     }
 }
  
@@ -147,6 +148,16 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("IntersectionInfo_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> IntersectionInfo_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << IntersectionInfo_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
 
 	// start socket thread
 	std::thread socketThread(socket_thread);

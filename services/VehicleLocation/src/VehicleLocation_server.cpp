@@ -36,6 +36,7 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 float vehicle_loc_data[3] = {0.0, 0.0, 0.0};
+int32_t LocationInfo_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -140,7 +141,7 @@ void send_vehicle_location(std::shared_ptr<VehicleLocationStubImpl> myService) {
 			vehicle_loc_data[0], vehicle_loc_data[1], vehicle_loc_data[2]);
 
         //delay(1);
-        usleep(200000); // 200ms
+        usleep(LocationInfo_interval); // 200ms
     }
 }
  
@@ -148,6 +149,18 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("LocationInfo_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> LocationInfo_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << LocationInfo_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+
 
 	// start socket thread
 	std::thread socketThread(socket_thread);

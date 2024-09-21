@@ -36,6 +36,7 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 int trafficlight_data[2] = {0, 0};
+int TrafficLightStatus_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -139,7 +140,7 @@ void send_trafficlight(std::shared_ptr<TrafficLightStubImpl> myService) {
 		myService->fireTrafficLightStatusEvent(trafficlight_data[0], trafficlight_data[1]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(TrafficLightStatus_interval); // 200ms
     }
 }
  
@@ -147,6 +148,16 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("TrafficLightStatus_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> TrafficLightStatus_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << TrafficLightStatus_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
 
 	// start socket thread
 	std::thread socketThread(socket_thread);
