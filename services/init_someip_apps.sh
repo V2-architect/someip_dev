@@ -39,5 +39,9 @@ echo "Init VehiclePose SOME/IP Service"
 python3 init_someip_app.py -t event -n VehiclePose
 sleep 1
 
+echo "Init VehicleSpeed SOME/IP Service"
+python3 init_someip_app.py -t event -n VehicleSpeed
+sleep 1
+
 
 
