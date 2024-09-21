@@ -38,4 +38,4 @@ cp -rf ../../../scripts/*.py .
 cp -rf ../someip_service.prop .
 
 # time_interval
-cp -rf ../*_interval.txt .
+#cp -rf ../*_interval.txt .
