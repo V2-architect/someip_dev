@@ -12,5 +12,10 @@ service_list = os.popen("ls -d */ | grep -v template").read().strip().split("\n"
 # at services/
 for service in service_list:
 	for f in target_files:
-		print(f"cp -rf ../scripts/{f} {service}")
-		os.system(f"cp -rf ../scripts/{f} {service}")
+		if os.path.exists(f"{service}/build"):
+			print(f"cp -rf ../scripts/{f} {service}/build")
+			os.system(f"cp -rf ../scripts/{f} {service}/build")
+
+		if os.path.exists(f"{service}/release"):
+			print(f"cp -rf ../scripts/{f} {service}/release")
+			os.system(f"cp -rf ../scripts/{f} {service}/release")
