@@ -50,7 +50,8 @@ def main(svc_name, svc_type):
 		"SERVICE_NAME",
 		"TCP_PORT_NUM",
 		"UDP_PORT_NUM",
-		"UNIX_DOMAIN_SOCKET_PATH"
+		"UNIX_DOMAIN_SOCKET_PATH",
+		"ROUTING_MULTICAST_IP"
 	]
 
 	for f in files:
