@@ -18,9 +18,9 @@ def main(argv):
             exit(1)
 
     # 03. check if multicast IP is set
-    ret = os.popen("route -n | grep 239.10.0.1").read().strip()
+    ret = os.popen("route -n | grep 239.10.3.1").read().strip()
     if not bool(ret):
-        print("[Warning] multicast IP(239.10.0.1) is not set. please check!")
+        print("[Warning] multicast IP(239.10.3.1) is not set. please check!")
         time.sleep(3)
 
 
