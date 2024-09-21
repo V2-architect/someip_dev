@@ -43,6 +43,10 @@ char buffer[sizeof(int) + sizeof(float)*6];
 int32_t objtype = 0;
 float obj_vel_axis[3] = {0.0, 0.0, 0.0};
 float obj_accel_axis[3] = {0.0, 0.0, 0.0};
+int32_t ObjectType_interval = 0;
+int32_t ObjectVelocityAxis_interval = 0;
+int32_t ObjectAccelAxis_interval = 0;
+
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -154,7 +158,7 @@ void send_objtype(std::shared_ptr<ObjectDetectionStubImpl> myService) {
 		myService->fireObjectTypeEvent(objtype);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(ObjectType_interval); // 20ms
     }
 }
 
@@ -166,7 +170,7 @@ void send_obj_vel_axis(std::shared_ptr<ObjectDetectionStubImpl> myService) {
 		myService->fireObjectVelocityAxisEvent(obj_vel_axis[0], obj_vel_axis[1], obj_vel_axis[2]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(ObjectVelocityAxis_interval); // 20ms
     }
 }
 
@@ -177,7 +181,7 @@ void send_obj_accel_axis(std::shared_ptr<ObjectDetectionStubImpl> myService) {
         myService->fireObjectAccelAxisEvent(obj_accel_axis[0], obj_accel_axis[1], obj_accel_axis[2]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(ObjectAccelAxis_interval); // 20ms
     }
 }
  
@@ -185,6 +189,37 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("ObjectType_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> ObjectType_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << ObjectType_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+	// set signal time interval
+	std::ifstream inputFile2("ObjectVelocityAxis_interval.txt");
+    if (inputFile2.is_open()) {
+        inputFile2 >> ObjectVelocityAxis_interval;
+        inputFile2.close();
+        std::cout << "Time Interval: " << ObjectVelocityAxis_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+	// set signal time interval
+	std::ifstream inputFile3("ObjectAccelAxis_interval.txt");
+    if (inputFile3.is_open()) {
+        inputFile3 >> ObjectAccelAxis_interval;
+        inputFile3.close();
+        std::cout << "Time Interval: " << ObjectAccelAxis_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
 
 	// start socket thread
 	std::thread socketThread(socket_thread);

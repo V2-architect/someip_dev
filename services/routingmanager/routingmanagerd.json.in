@@ -7,26 +7,8 @@
         "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
         "dlt" : "false"
     },
-	"services": [
-		{
-			"service": "0x1000",
-			"instance": "0x0001",
-			"unreliable": "31000",
-			"reliable": {
-				"port": "41000",
-				"enable-magic-cookies": "false"
-			},
-			"eventgroups": [
-				{
-					"eventgroup": "0x0100",
-					"multicast": {
-						"address": "239.10.0.11",
-						"port": "31100"
-					},
-					"threshold": 1
-				}
-			]
-		},
+	"services": 
+	[
 		{
 			"service": "0x3003",
 			"instance": "0x0001",
@@ -39,7 +21,7 @@
 				{
 					"eventgroup": "0x0300",
 					"multicast": {
-						"address": "239.10.0.13",
+						"address": "239.10.3.13",
 						"port": "33303"
 					},
 					"threshold": 1
@@ -58,7 +40,7 @@
 				{
 					"eventgroup": "0x0200",
 					"multicast": {
-						"address": "239.10.0.12",
+						"address": "239.10.3.12",
 						"port": "32201"
 					},
 					"threshold": 1
@@ -77,7 +59,7 @@
 				{
 					"eventgroup": "0x0300",
 					"multicast": {
-						"address": "239.10.0.13",
+						"address": "239.10.3.13",
 						"port": "33301"
 					},
 					"threshold": 1
@@ -96,7 +78,7 @@
 				{
 					"eventgroup": "0x0300",
 					"multicast": {
-						"address": "239.10.0.13",
+						"address": "239.10.3.13",
 						"port": "33302"
 					},
 					"threshold": 1
@@ -115,7 +97,7 @@
 				{
 					"eventgroup": "0x0200",
 					"multicast": {
-						"address": "239.10.0.12",
+						"address": "239.10.3.12",
 						"port": "32204"
 					},
 					"threshold": 1
@@ -134,7 +116,7 @@
 				{
 					"eventgroup": "0x0300",
 					"multicast": {
-						"address": "239.10.0.13",
+						"address": "239.10.3.13",
 						"port": "33300"
 					},
 					"threshold": 1
@@ -153,7 +135,7 @@
 				{
 					"eventgroup": "0x0200",
 					"multicast": {
-						"address": "239.10.0.12",
+						"address": "239.10.3.12",
 						"port": "32200"
 					},
 					"threshold": 1
@@ -172,7 +154,7 @@
 				{
 					"eventgroup": "0x0100",
 					"multicast": {
-						"address": "239.10.0.11",
+						"address": "239.10.3.11",
 						"port": "31102"
 					},
 					"threshold": 1
@@ -191,7 +173,7 @@
 				{
 					"eventgroup": "0x0100",
 					"multicast": {
-						"address": "239.10.0.11",
+						"address": "239.10.3.11",
 						"port": "31103"
 					},
 					"threshold": 1
@@ -210,8 +192,27 @@
 				{
 					"eventgroup": "0x0100",
 					"multicast": {
-						"address": "239.10.0.11",
+						"address": "239.10.3.11",
 						"port": "31101"
+					},
+					"threshold": 1
+				}
+			]
+		},
+		{
+			"service": "0x1000",
+			"instance": "0x0001",
+			"unreliable": "31000",
+			"reliable": {
+				"port": "41000",
+				"enable-magic-cookies": "false"
+			},
+			"eventgroups": [
+				{
+					"eventgroup": "0x0100",
+					"multicast": {
+						"address": "239.10.3.11",
+						"port": "31100"
 					},
 					"threshold": 1
 				}
@@ -222,7 +223,7 @@
     "service-discovery" :
     {
         "enable" : "true",
-        "multicast" : "239.10.0.1",
+        "multicast" : "239.10.3.1",
         "port" : "30490",
         "protocol" : "udp",
         "initial_delay_min" : "10",

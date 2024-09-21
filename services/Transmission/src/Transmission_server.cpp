@@ -36,6 +36,7 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 int32_t vehicle_gear[1] = {0};
+int32_t GearStatus_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -139,7 +140,7 @@ void send_vehicle_gear(std::shared_ptr<TransmissionStubImpl> myService) {
 		myService->fireGearStatusEvent(vehicle_gear[0]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(GearStatus_interval); // 20ms
     }
 }
  
@@ -147,6 +148,18 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+
+	// set signal time interval
+	std::ifstream inputFile("GearStatus_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> GearStatus_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << GearStatus_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
 
 	// start socket thread
 	std::thread socketThread(socket_thread);

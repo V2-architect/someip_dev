@@ -35,6 +35,7 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 float vehicle_accel_data[3] = {0.0, 0.0, 0.0};
+int32_t AccelAxis_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -123,11 +124,34 @@ void socket_thread() {
     close(server_socket);
     unlink(socket_path);
 }
+
+// todo
+void send_vehicle_accel_data(std::shared_ptr<VehicleAccelStubImpl> myService) {
+    while (true) {
+        // [todo] need to update according to the generated API
+        myService->fireAccelAxisEvent(vehicle_accel_data[0], vehicle_accel_data[1], vehicle_accel_data[2]);
+        //delay(1);
+        usleep(AccelAxis_interval); // 20ms
+    }
+}
+ 
  
 int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("AccelAxis_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> AccelAxis_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << AccelAxis_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+
 
 	// start socket thread
 	std::thread socketThread(socket_thread);
@@ -137,13 +161,15 @@ int main() {
     std::shared_ptr<VehicleAccelStubImpl> myService = std::make_shared<VehicleAccelStubImpl>();
     runtime->registerService("local", "test", myService);
     std::cout << "Successfully Registered Service!" << std::endl;
+	// todo
+	// sending thread
+	std::thread th1(send_vehicle_accel_data, myService);
 
     while (true) {
-        // [todo] need to update according to the generated API
-        myService->fireAccelAxisEvent(vehicle_accel_data[0], vehicle_accel_data[1], vehicle_accel_data[2]);
-        //delay(1);
-        usleep(20000); // 20ms
+		std::cout << "[Collision] main thread .... time interval(1s)" << std::endl;
+        delay(1);
     }
+
  
     return 0;
 } 

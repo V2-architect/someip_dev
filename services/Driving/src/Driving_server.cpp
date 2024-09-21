@@ -36,6 +36,8 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 float vehicle_driving_data[2] = {0.0, 0.0};
+int32_t AccelStatus_interval = 0;
+int32_t BrakeStatus_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -139,7 +141,7 @@ void send_accel(std::shared_ptr<DrivingStubImpl> myService) {
 		myService->fireAccelStatusEvent(vehicle_driving_data[0]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(AccelStatus_interval); // 20ms
     }
 }
 
@@ -150,7 +152,7 @@ void send_brake(std::shared_ptr<DrivingStubImpl> myService) {
         myService->fireBrakeStatusEvent(vehicle_driving_data[1]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(BrakeStatus_interval); // 20ms
     }
 }
  
@@ -158,6 +160,28 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("AccelStatus_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> AccelStatus_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << AccelStatus_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+	// set signal time interval
+	std::ifstream inputFile2("BrakeStatus_interval.txt");
+    if (inputFile2.is_open()) {
+        inputFile2 >> BrakeStatus_interval;
+        inputFile2.close();
+        std::cout << "Time Interval: " << BrakeStatus_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+
 
 	// start socket thread
 	std::thread socketThread(socket_thread);

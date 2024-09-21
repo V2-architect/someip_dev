@@ -29,7 +29,7 @@
                 {
                     "eventgroup": "0x0300",
                     "multicast": {
-                        "address": "239.10.0.13",
+                        "address": "239.10.3.13",
                         "port": "33301"
                     },
                     "threshold": 1
@@ -41,7 +41,7 @@
     "service-discovery" :
     {
         "enable" : "true",
-        "multicast" : "239.10.0.1",
+        "multicast" : "239.10.3.1",
         "port" : "30490",
         "protocol" : "udp",
         "initial_delay_min" : "10",

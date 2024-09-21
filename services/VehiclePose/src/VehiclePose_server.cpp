@@ -35,6 +35,8 @@ std::atomic<bool> running(true);
 // [todo] need to update according to the generated API
 // [todo] shared data(global variable) between socket thread and main thread
 float vehicle_pose_data[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
+int32_t VehiclePosition_interval = 0;
+int32_t AngularVelocity_interval = 0;
 
 void cleanup_and_exit(int signum) {
     running = false;
@@ -138,7 +140,7 @@ void send_vehicle_position(std::shared_ptr<VehiclePoseStubImpl> myService) {
 			vehicle_pose_data[0], vehicle_pose_data[1], vehicle_pose_data[2]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(VehiclePosition_interval); // 20ms
     }
 }
 
@@ -149,7 +151,7 @@ void send_angular_velocity(std::shared_ptr<VehiclePoseStubImpl> myService) {
 			vehicle_pose_data[3], vehicle_pose_data[4], vehicle_pose_data[5]);
 
         //delay(1);
-        usleep(20000); // 20ms
+        usleep(AngularVelocity_interval); // 20ms
     }
 }
  
@@ -157,6 +159,30 @@ int main() {
 	// signal handler
     signal(SIGINT, cleanup_and_exit);
     signal(SIGTERM, cleanup_and_exit);
+
+	// set signal time interval
+	std::ifstream inputFile("VehiclePosition_interval.txt");
+    if (inputFile.is_open()) {
+        inputFile >> VehiclePosition_interval;
+        inputFile.close();
+        std::cout << "Time Interval: " << VehiclePosition_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+	// set signal time interval
+	std::ifstream inputFile2("AngularVelocity_interval.txt");
+    if (inputFile2.is_open()) {
+        inputFile2 >> AngularVelocity_interval;
+        inputFile2.close();
+        std::cout << "Time Interval: " << AngularVelocity_interval << std::endl;
+    } else {
+        std::cerr << "Unable to open file" << std::endl;
+    }
+
+
+
+
 
 	// start socket thread
 	std::thread socketThread(socket_thread);

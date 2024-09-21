@@ -65,7 +65,7 @@ echo "==========================================="
 echo "GIT_PROJECT_ROOT  : "${GIT_PROJECT_ROOT}
 echo "APP_ROOT          : "${APP_ROOT}
 echo "SOMEIP_HOST_IP    : "${SOMEIP_HOST_IP}
-echo "MULTICAST_IP      : "${MULTICAST_IP}
+echo "MULTICAST_IP      : "${MULTICAST_IP}"   <-- just informed. not correct information"
 echo "TRANSPORT_PROTOCOL: "${TRANSPORT_PROTOCOL}
 echo "LD_LIBRARY_PATH   : "${APP_LD_LIBRARY_PATH}
 
