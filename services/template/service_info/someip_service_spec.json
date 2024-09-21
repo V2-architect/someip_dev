@@ -240,5 +240,27 @@
         "ROUTING_MULTICAST_IP": "239.10.3.1",
         "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_collision"
+    },
+    "Logging": {
+        "SERVICE_CATEGORY": "Infotainment",
+        "SERVICE_NAME": "Logging",
+        "SERVICE_ID": "6000",
+        "INSTANCE_ID": "1",
+        "DATA_CATEGORY": "Safety-irrelated control",
+        "SOMEIP_COMM_TYPE": "method",
+        "METHOD_NAME": "get_log_file",
+        "METHOD_ID": "46001",
+        "EVENT_NAME": "x",
+        "EVENT_ID": "x",
+        "EVENTGROUP_ID": "x",
+        "TIME_INTERVAL": "x",
+        "TRANSPORT_PROTOCOL": "tcp",
+        "UDP_PORT_NUM": "36000",
+        "TCP_PORT_NUM": "46000",
+        "EVENTGROUP_MULTICAST_IP": "x",
+        "EVENTGROUP_MULTICAST_PORT_NUM": "x",
+        "ROUTING_MULTICAST_IP": "239.10.3.1",
+        "VLAN": "3",
+        "UNIX_DOMAIN_SOCKET_PATH": "x"
     }
 }
