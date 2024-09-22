@@ -1,0 +1,10 @@
+package commonapi
+ 
+interface Logging {
+  version {major 1 minor 0}
+
+  method get_log_file {
+    out { Boolean response }
+  }
+} 
+
