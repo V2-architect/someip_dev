@@ -1,11 +1,13 @@
 {
     "unicast" : "@SOMEIP_HOST_IP@",
     "logging" :
-    { 
+    {
         "level" : "trace",
         "console" : "true",
-        "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
-        "dlt" : "false"
+        "file" : { "enable" : "true", "path" : "@LOGGING_FILEPATH@" },
+        "dlt" : "false",
+        "memory_log_interval": 1,
+        "status_log_interval": 1
     },
     "applications" :
     [
