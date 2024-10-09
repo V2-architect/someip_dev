@@ -2,13 +2,33 @@
     "unicast" : "@SOMEIP_HOST_IP@",
     "logging" :
     { 
-        "level" : "debug",
+        "level" : "trace",
         "console" : "true",
-        "file" : { "enable" : "false", "path" : "/tmp/vsomeip.log" },
-        "dlt" : "false"
+        "file" : { "enable" : "true", "path" : "@LOGGING_FILEPATH@" },
+        "dlt" : "false",
+        "memory_log_interval": 1,
+        "status_log_interval": 1
     },
-	"services": 
-	[
+	"services": [
+		{
+			"service": "0x1000",
+			"instance": "0x0001",
+			"unreliable": "31000",
+			"reliable": {
+				"port": "41000",
+				"enable-magic-cookies": "false"
+			},
+			"eventgroups": [
+				{
+					"eventgroup": "0x0100",
+					"multicast": {
+						"address": "239.10.3.11",
+						"port": "31100"
+					},
+					"threshold": 2
+				}
+			]
+		},
 		{
 			"service": "0x3003",
 			"instance": "0x0001",
@@ -24,7 +44,7 @@
 						"address": "239.10.3.13",
 						"port": "33303"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -43,7 +63,7 @@
 						"address": "239.10.3.12",
 						"port": "32201"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -62,7 +82,7 @@
 						"address": "239.10.3.13",
 						"port": "33301"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -81,7 +101,7 @@
 						"address": "239.10.3.13",
 						"port": "33302"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -100,7 +120,7 @@
 						"address": "239.10.3.12",
 						"port": "32204"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -119,7 +139,7 @@
 						"address": "239.10.3.13",
 						"port": "33300"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -138,7 +158,7 @@
 						"address": "239.10.3.12",
 						"port": "32200"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -157,7 +177,7 @@
 						"address": "239.10.3.11",
 						"port": "31102"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -176,7 +196,7 @@
 						"address": "239.10.3.11",
 						"port": "31103"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
@@ -195,29 +215,18 @@
 						"address": "239.10.3.11",
 						"port": "31101"
 					},
-					"threshold": 1
+					"threshold": 2
 				}
 			]
 		},
-		{
-			"service": "0x1000",
-			"instance": "0x0001",
-			"unreliable": "31000",
-			"reliable": {
-				"port": "41000",
-				"enable-magic-cookies": "false"
-			},
-			"eventgroups": [
-				{
-					"eventgroup": "0x0100",
-					"multicast": {
-						"address": "239.10.3.11",
-						"port": "31100"
-					},
-					"threshold": 1
-				}
-			]
-		}
+        {
+            "service" : "0x6000",
+            "instance" : "0x0001",
+            "reliable" : {
+                "port": "46000",
+                "enable-magic-cookies": "false"
+            }
+        }
 	],
     "routing" : "routingmanagerd",
     "service-discovery" :
@@ -229,9 +238,9 @@
         "initial_delay_min" : "10",
         "initial_delay_max" : "100",
         "repetitions_base_delay" : "200",
-        "repetitions_max" : "3",
+        "repetitions_max" : "5",
         "ttl" : "3",
-        "cyclic_offer_delay" : "2000",
-        "request_response_delay" : "1500"
+        "cyclic_offer_delay" : "3000",
+        "request_response_delay" : "3000"
     }
 }

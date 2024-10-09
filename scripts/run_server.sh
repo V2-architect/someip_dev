@@ -53,6 +53,7 @@ fi
 
 CONF_FILE_TEMPLATE=${APP_ROOT}/server.json.in
 CONF_FILE=${APP_ROOT}/server-${HOSTNAME}.json
+CONF_FILE_TMP=${APP_ROOT}/server-${HOSTNAME}.json.tmp
 
 echo "==========================================="
 echo "============= SOME/IP Client =============="
@@ -66,6 +67,11 @@ echo "TRANSPORT_PROTOCOL: "${TRANSPORT_PROTOCOL}
 echo "LD_LIBRARY_PATH   : "${APP_LD_LIBRARY_PATH}
 
 sed "s/@SOMEIP_HOST_IP@/${SOMEIP_HOST_IP}/g" $CONF_FILE_TEMPLATE > $CONF_FILE
+LOGGING_FILEPATH="/root/someip_app/logs/${HOSTNAME}-${SERVICE_NAME}-server.log"
+echo "LOGGING_FILEPATH: "${LOGGING_FILEPATH}
+mv ${CONF_FILE} ${CONF_FILE_TMP}
+sed "s,@LOGGING_FILEPATH@,${LOGGING_FILEPATH},g" ${CONF_FILE_TMP} > ${CONF_FILE}
+rm ${CONF_FILE_TMP}
 
 LD_LIBRARY_PATH=$APP_LD_LIBRARY_PATH \
 VSOMEIP_CONFIGURATION=$CONF_FILE \

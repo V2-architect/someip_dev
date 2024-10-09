@@ -1,0 +1,17 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "Logging.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.Logging {
+	SomeIpServiceID = 0x6000
+
+	method get_log_file {
+		SomeIpMethodID = 46001
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.Logging {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}

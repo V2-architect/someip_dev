@@ -12,40 +12,33 @@
     "applications" :
     [
         {
-            "name" : "Transmission",
-            "id" : "0x2000"
+            "name" : "Logging",
+            "id" : "0x6000"
         }
     ],
     "services" :
     [
         {
-            "service" : "0x2000",
+            "service" : "0x6000",
             "instance" : "0x0001",
-            "unreliable" : "32000",
+            "unreliable" : "36000",
             "reliable" :
                 {
-                "port": "42000",
+                "port": "46000",
                 "enable-magic-cookies": "false"
             },
             "eventgroups": [
                 {
-                    "eventgroup": "0x0200",
+                    "eventgroup": "0x000x",
                     "multicast": {
-                        "address": "239.10.3.12",
-                        "port": "32200"
+                        "address": "x",
+                        "port": "x"
                     },
                     "threshold": 1
                 }
             ]
         }
     ],
-    "clients" :
-    [   
-        {
-            "reliable_client_ports": {"first": "32100", "last": "32110"},
-            "reliable_remote_ports": {"first": "32100", "last": "32110"}
-        }
-    ], 
     "routing" : "routingmanagerd",
     "service-discovery" :
     {
