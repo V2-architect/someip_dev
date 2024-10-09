@@ -51,7 +51,12 @@ def main(svc_name, svc_type):
 		"TCP_PORT_NUM",
 		"UDP_PORT_NUM",
 		"UNIX_DOMAIN_SOCKET_PATH",
-		"ROUTING_MULTICAST_IP"
+		"ROUTING_MULTICAST_IP",
+		"GETTER_ID",
+		"SETTER_ID",
+		"NOTIFIER_ID",
+		"NOTIFIER_EVENTGROUP_ID",
+		"FIELD_NAME"
 	]
 
 	for f in files:
@@ -65,7 +70,7 @@ def main(svc_name, svc_type):
 			service_text = service_info[target]
 
 			# [NOTE] exceptional logic...
-			if target != 'EVENT_ID' and target.endswith("_ID"):
+			if target not in ['EVENT_ID', 'GETTER_ID', 'SETTER_ID', 'NOTIFIER_ID'] and target.endswith("_ID"):
 				service_text = f"0x{service_text.zfill(4)}"
 
 			#if target == 'SERVICE_NAME':
