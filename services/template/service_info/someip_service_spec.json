@@ -8,6 +8,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "VehicleSpeedAxis",
         "EVENT_ID": "41001",
         "EVENTGROUP_ID": "100",
@@ -18,7 +19,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31100",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "1",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_speed"
     },
     "VehiclePose": {
@@ -30,6 +31,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "AngularVelocity",
         "EVENT_ID": "41002",
         "EVENTGROUP_ID": "100",
@@ -40,7 +42,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31101",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "1",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_pose"
     },
     "VehicleAccel": {
@@ -52,6 +54,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "AccelAxis",
         "EVENT_ID": "41001",
         "EVENTGROUP_ID": "100",
@@ -62,7 +65,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31102",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "1",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_accel"
     },
     "VehicleLocation": {
@@ -74,6 +77,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "LocationInfo",
         "EVENT_ID": "41001",
         "EVENTGROUP_ID": "100",
@@ -84,7 +88,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.11",
         "EVENTGROUP_MULTICAST_PORT_NUM": "31103",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "1",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_location"
     },
     "Transmission": {
@@ -96,6 +100,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "GearStatus",
         "EVENT_ID": "42001",
         "EVENTGROUP_ID": "200",
@@ -106,7 +111,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.12",
         "EVENTGROUP_MULTICAST_PORT_NUM": "32200",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "2",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_transmission"
     },
     "Driving": {
@@ -118,6 +123,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "BrakeStatus",
         "EVENT_ID": "42002",
         "EVENTGROUP_ID": "200",
@@ -128,7 +134,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.12",
         "EVENTGROUP_MULTICAST_PORT_NUM": "32201",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "2",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_driving"
     },
     "SteeringWheel": {
@@ -140,6 +146,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "SteeringWheelStatus",
         "EVENT_ID": "42001",
         "EVENTGROUP_ID": "200",
@@ -150,7 +157,7 @@
         "EVENTGROUP_MULTICAST_IP": "239.10.3.12",
         "EVENTGROUP_MULTICAST_PORT_NUM": "32204",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
-        "VLAN": "2",
+        "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_steeringwheel"
     },
     "TrafficLight": {
@@ -162,6 +169,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "TrafficLightStatus",
         "EVENT_ID": "43001",
         "EVENTGROUP_ID": "300",
@@ -184,6 +192,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "IntersectionInfo",
         "EVENT_ID": "43001",
         "EVENTGROUP_ID": "300",
@@ -206,6 +215,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "ObjectAccelAxis",
         "EVENT_ID": "43003",
         "EVENTGROUP_ID": "300",
@@ -228,6 +238,7 @@
         "SOMEIP_COMM_TYPE": "event",
         "METHOD_NAME": "x",
         "METHOD_ID": "x",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "ObjectType",
         "EVENT_ID": "43001",
         "EVENTGROUP_ID": "300",
@@ -250,6 +261,7 @@
         "SOMEIP_COMM_TYPE": "method",
         "METHOD_NAME": "get_log_file",
         "METHOD_ID": "46001",
+        "FIELD_NAME": "x",
         "EVENT_NAME": "x",
         "EVENT_ID": "x",
         "EVENTGROUP_ID": "x",
@@ -259,6 +271,29 @@
         "TCP_PORT_NUM": "46000",
         "EVENTGROUP_MULTICAST_IP": "x",
         "EVENTGROUP_MULTICAST_PORT_NUM": "x",
+        "ROUTING_MULTICAST_IP": "239.10.3.1",
+        "VLAN": "3",
+        "UNIX_DOMAIN_SOCKET_PATH": "x"
+    },
+    "Hvac": {
+        "SERVICE_CATEGORY": "Cabin",
+        "SERVICE_NAME": "Hvac",
+        "SERVICE_ID": "4000",
+        "INSTANCE_ID": "1",
+        "DATA_CATEGORY": "Safety-irrelated control",
+        "SOMEIP_COMM_TYPE": "field",
+        "METHOD_NAME": "x",
+        "METHOD_ID": "x",
+        "FIELD_NAME": "temperature",
+        "EVENT_NAME": "x",
+        "EVENT_ID": "x",
+        "EVENTGROUP_ID": "400",
+        "TIME_INTERVAL": "x",
+        "TRANSPORT_PROTOCOL": "udp",
+        "UDP_PORT_NUM": "34000",
+        "TCP_PORT_NUM": "44000",
+        "EVENTGROUP_MULTICAST_IP": "239.10.3.14",
+        "EVENTGROUP_MULTICAST_PORT_NUM": "34400",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
         "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "x"
