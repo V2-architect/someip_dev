@@ -1,0 +1,19 @@
+package commonapi
+ 
+interface @SERVICE_NAME@ {
+  version {major 1 minor 0}
+
+  method @METHOD_NAME@ {
+    // [todo]
+    in  { Int32 param_in }
+    out { Int32 param_out }
+  }
+
+  broadcast @EVENT_NAME@ {
+    // [todo]
+    out { Int32 gear }
+  }
+
+  attribute Float @variable@
+} 
+
