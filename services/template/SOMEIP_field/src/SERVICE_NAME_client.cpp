@@ -32,11 +32,11 @@ void handle_field_sync(std::shared_ptr<@SERVICE_NAME@Proxy<>> myProxy, float val
     info.sender_ = 5678;
 	//float &value_from_server = value;
 	// [@SERVICE_NAME@] Setter
-	//myProxy->getTemperatureAttribute().setValue(
+	//myProxy->get@FIELD_NAME@Attribute().setValue(
 	//	value, callStatus, &value_from_server);
 
 	std::cout << "[@SERVICE_NAME@][Client][Thread] Set attribute -> " << value << std::endl;
-	myProxy->getTemperatureAttribute().setValue(
+	myProxy->get@FIELD_NAME@Attribute().setValue(
 		value, callStatus, value, &info);
 	std::cout << "[@SERVICE_NAME@][Client][Thread] Set attribute reponse -> " << value << std::endl;
 }
