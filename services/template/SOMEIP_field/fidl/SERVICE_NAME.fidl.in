@@ -14,6 +14,6 @@ interface @SERVICE_NAME@ {
     out { Int32 gear }
   }
 
-  attribute Float @variable@
+  attribute Float @FIELD_NAME@
 } 
 

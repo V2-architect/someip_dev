@@ -7,33 +7,41 @@
 using namespace v1::commonapi;
 
 
+// todo
+// global variables
+float g_temp = 0.0;
+
 void recv_field_cb(const CommonAPI::CallStatus& callStatus, const float& val) {
-    std::cout << "[field][Async] Receive callback: " << val << std::endl;
+    std::cout << "[@SERVICE_NAME@][Client][Field-Async] Receive callback: " << val << std::endl;
 }
 
-void handle_field_async(std::shared_ptr<HelloWorldProxy<>> myProxy, float value) {
+void handle_field_async(std::shared_ptr<@SERVICE_NAME@Proxy<>> myProxy, float value) {
     CommonAPI::CallStatus callStatus;
 
-    // [field] Setter Asynchronous call to set attribute of service
+    // [@SERVICE_NAME@] Setter Asynchronous call to set attribute of service
     CommonAPI::CallInfo info(1000);
     info.sender_ = 5678;
     std::function<void(const CommonAPI::CallStatus&, int32_t)> fcb = recv_field_cb;
-    myProxy->getXAttribute().setValueAsync(value, fcb, &info);
+    myProxy->get@FIELD_NAME@Attribute().setValueAsync(value, fcb, &info);
 }
 
-void handle_field_sync(std::shared_ptr<HelloWorldProxy<>> myProxy, float value) {
+void handle_field_sync(std::shared_ptr<@SERVICE_NAME@Proxy<>> myProxy, float value) {
     CommonAPI::CallStatus callStatus;
 
-	int32_t value_from_server;
-	// [field] Setter
-	myProxy->getXAttribute().setValue(
-		value, callStatus, value_from_server);
-	std::cout << "[Field] Set attribute -> " << value << std::endl;
-	std::cout << "[Field] --> the value from server -> " << value_from_server << std::endl;
+	CommonAPI::CallInfo info(1000);
+    info.sender_ = 5678;
+	//float &value_from_server = value;
+	// [@SERVICE_NAME@] Setter
+	//myProxy->getTemperatureAttribute().setValue(
+	//	value, callStatus, &value_from_server);
 
+	std::cout << "[@SERVICE_NAME@][Client][Thread] Set attribute -> " << value << std::endl;
+	myProxy->getTemperatureAttribute().setValue(
+		value, callStatus, value, &info);
+	std::cout << "[@SERVICE_NAME@][Client][Thread] Set attribute reponse -> " << value << std::endl;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     std::shared_ptr < CommonAPI::Runtime > runtime = CommonAPI::Runtime::get();
     std::shared_ptr<@SERVICE_NAME@Proxy<>> myProxy = runtime->buildProxy<@SERVICE_NAME@Proxy>("local", "test");
 
@@ -43,7 +51,7 @@ int main() {
     // only change compared to the original "10 minutes" example
     if (!myProxy)
     {
-       std::cerr << "@SERVICE_NAME@Client FAIL: Returned  proxy is NULL! - Giving up!\n";
+       std::cerr << "[@SERVICE_NAME@][Client] FAIL: Returned  proxy is NULL! - Giving up!\n";
        return 2;
     }
     // END modification
@@ -53,31 +61,28 @@ int main() {
         usleep(10);
     std::cout << "Available..." << std::endl;
 
-    CommonAPI::CallStatus callStatus;
-    int retVal;
-
-	int count = 0;
-    // [todo] need to work according to the generated API
-    myProxy->get@EVENT_NAME@Event().subscribe([&](const float & event1, const float & event2, const float & event3) {
-		count++;
-		if(count % 50 == 0) { // 20ms x 50 = 1s
-			std::cout << "[@SERVICE_NAME@][Client] Received @SERVICE_NAME@ event: " << std::endl;
-			std::cout << "[@SERVICE_NAME@][Client] accel_x: " << accel_x <<
-											  ", accel_y: " << accel_y <<
-											  ", accel_z: " << accel_z << std::endl;
-			count = 0;
-		}
+    std::cout << "get@FIELD_NAME@ changedEvent registration!" << std::endl;
+    myProxy->get@FIELD_NAME@Attribute().getChangedEvent().subscribe([&](const float& value) {
+		g_temp = value;
+        std::cout << "[@SERVICE_NAME@][Client][Main-Thread] Received change @FIELD_NAME@: " << g_temp << std::endl;
     });
 
-    float field_value = 0;
-    while(true) {
-        std::cout << "[@SERVICE_NAME@][Client] while loop... in main thread" << std::endl;
-        usleep(1000000); // 1s
-
-		handle_field_sync(myProxy, field_value++);
-		handle_field_async(myProxy, field_value+100);
-    }
-
+	// todo
+	std::string ecu_name = argv[1];
+	if (ecu_name == "ivi") {
+		while(true) {
+			std::cout << "[@SERVICE_NAME@][Client] while loop... in main thread" << std::endl;
+			usleep(1000000); // 1s
+			handle_field_sync(myProxy, g_temp++);
+			//handle_field_async(myProxy, temperature+100);
+		}
+	}
+	if (ecu_name == "cluster") {
+		while(true) {
+			std::cout << "[@SERVICE_NAME@][Client][Only Listen] while loop... in main thread" << std::endl;
+			usleep(1000000); // 1s
+		}
+	}
     return 0;
 }
 

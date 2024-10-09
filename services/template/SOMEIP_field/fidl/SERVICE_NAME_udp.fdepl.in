@@ -17,14 +17,13 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.@SERVICE_N
 		SomeIpReliable = true
 	}
 
-	attribute @variable@ {
-		SomeIpGetterID = 3000
-		SomeIpSetterID = 3001
-		SomeIpNotifierID = 33010
-		SomeIpNotifierEventGroups = { 33010 }  // 0x80F2
+	attribute @FIELD_NAME@ {
+		SomeIpGetterID = @GETTER_ID@
+		SomeIpSetterID = @SETTER_ID@
+		SomeIpNotifierID = @NOTIFIER_ID@
+		SomeIpNotifierEventGroups = { @NOTIFIER_EVENTGROUP_ID@ }
 		SomeIpAttributeReliable = true
 	}
-
 }
 
 define org.genivi.commonapi.someip.deployment for provider as MyService {
