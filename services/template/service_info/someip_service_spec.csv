@@ -1,18 +1,18 @@
-SERVICE_NAME,SERVICE_ID,INSTANCE_ID,DATA_CATEGORY,SOMEIP_COMM_TYPE,METHOD_NAME,METHOD_ID,FIELD_NAME,GETTER_ID,SETTER_ID,NOTIFIER_ID,NOTIFIER_EVENTGROUP_ID,EVENT_NAME,EVENT_ID,EVENTGROUP_ID,TIME_INTERVAL,TRANSPORT_PROTOCOL,UDP_PORT_NUM,TCP_PORT_NUM,EVENTGROUP_MULTICAST_IP,EVENTGROUP_MULTICAST_PORT_NUM,ROUTING_MULTICAST_IP,VLAN,UNIX_DOMAIN_SOCKET_PATH
-VehicleSpeed,1000,1,Safety-related control,event,x,x,x,x,x,x,x,VehicleSpeedAxis,41001,100,20,udp,31000,41000,239.10.3.11,31100,239.10.3.1,3,/tmp/uds/uds_vehicle_speed
-VehiclePose,1001,1,Safety-related control,event,x,x,x,x,x,x,x,VehiclePosition,41001,100,20,udp,31001,41001,239.10.3.11,31101,239.10.3.1,3,/tmp/uds/uds_vehicle_pose
-VehiclePose,1001,1,Safety-related control,event,x,x,x,x,x,x,x,AngularVelocity,41002,100,20,udp,31001,41001,239.10.3.11,31101,239.10.3.1,3,/tmp/uds/uds_vehicle_pose
-VehicleAccel,1002,1,Safety-related control,event,x,x,x,x,x,x,x,AccelAxis,41001,100,20,udp,31002,41002,239.10.3.11,31102,239.10.3.1,3,/tmp/uds/uds_vehicle_accel
-VehicleLocation,1003,1,Safety-irrelated control,event,x,x,x,x,x,x,x,LocationInfo,41001,100,200,udp,31003,41003,239.10.3.11,31103,239.10.3.1,3,/tmp/uds/uds_vehicle_location
-Transmission,2000,1,Safety-related control,event,x,x,x,x,x,x,x,GearStatus,42001,200,20,udp,32000,42000,239.10.3.12,32200,239.10.3.1,3,/tmp/uds/uds_vehicle_transmission
-Driving,2001,1,Safety-related control,event,x,x,x,x,x,x,x,AccelStatus,42001,200,20,udp,32001,42001,239.10.3.12,32201,239.10.3.1,3,/tmp/uds/uds_driving
-Driving,2001,1,Safety-related control,event,x,x,x,x,x,x,x,BrakeStatus,42002,200,20,udp,32001,42001,239.10.3.12,32201,239.10.3.1,3,/tmp/uds/uds_driving
-SteeringWheel,2004,1,Safety-related control,event,x,x,x,x,x,x,x,SteeringWheelStatus,42001,200,20,udp,32004,42004,239.10.3.12,32204,239.10.3.1,3,/tmp/uds/uds_steeringwheel
-TrafficLight,3000,1,Safety-irrelated control,event,x,x,x,x,x,x,x,TrafficLightStatus,43001,300,200,udp,33000,43000,239.10.3.13,33300,239.10.3.1,3,/tmp/uds/uds_trafficlight
-Intersection,3001,1,Safety-irrelated control,event,x,x,x,x,x,x,x,IntersectionInfo,43001,300,200,udp,33001,43001,239.10.3.13,33301,239.10.3.1,3,/tmp/uds/uds_intersection
-ObjectDetection,3002,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectVelocityAxis,43002,300,20,udp,33002,43002,239.10.3.13,33302,239.10.3.1,3,/tmp/uds/uds_objectdetection
-ObjectDetection,3002,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectAccelAxis,43003,300,20,udp,33002,43002,239.10.3.13,33302,239.10.3.1,3,/tmp/uds/uds_objectdetection
-Collision,3003,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectType,43001,300,20,udp,33003,43003,239.10.3.13,33303,239.10.3.1,3,/tmp/uds/uds_collision
-Hvac,4000,1,Safety-irrelated control,field,x,x,Temperature,1000,2000,40000,400,x,x,x,x,udp,34000,44000,239.10.3.14,#VALUE!,239.10.3.1,3,x
-Audio,4001,1,Safety-irrelated control,field,x,x,AudioVolume,1000,2000,40000,400,x,x,x,x,udp,34001,44001,239.10.3.14,#VALUE!,239.10.3.1,3,x
-Logging,6000,1,Safety-irrelated control,method,get_log_file,26001,x,x,x,x,x,x,x,x,x,tcp,36000,46000,x,x,239.10.3.1,3,x
+SERVICE_CATEGORY,SERVICE_NAME,SERVICE_ID,INSTANCE_ID,DATA_CATEGORY,SOMEIP_COMM_TYPE,METHOD_NAME,METHOD_ID,FIELD_NAME,GETTER_ID,SETTER_ID,NOTIFIER_ID,NOTIFIER_EVENTGROUP_ID,EVENT_NAME,EVENT_ID,EVENTGROUP_ID,TIME_INTERVAL,TRANSPORT_PROTOCOL,UDP_PORT_NUM,TCP_PORT_NUM,EVENTGROUP_MULTICAST_IP,EVENTGROUP_MULTICAST_PORT_NUM,ROUTING_MULTICAST_IP,VLAN,UNIX_DOMAIN_SOCKET_PATH
+Vehicle,VehicleSpeed,1000,1,Safety-related control,event,x,x,x,x,x,x,x,VehicleSpeedAxis,41001,100,20,udp,31000,41000,239.10.3.11,31100,239.10.3.1,3,/tmp/uds/uds_vehicle_speed
+Vehicle,VehiclePose,1001,1,Safety-related control,event,x,x,x,x,x,x,x,VehiclePosition,41001,100,20,udp,31001,41001,239.10.3.11,31101,239.10.3.1,3,/tmp/uds/uds_vehicle_pose
+Vehicle,VehiclePose,1001,1,Safety-related control,event,x,x,x,x,x,x,x,AngularVelocity,41002,100,20,udp,31001,41001,239.10.3.11,31101,239.10.3.1,3,/tmp/uds/uds_vehicle_pose
+Vehicle,VehicleAccel,1002,1,Safety-related control,event,x,x,x,x,x,x,x,AccelAxis,41001,100,20,udp,31002,41002,239.10.3.11,31102,239.10.3.1,3,/tmp/uds/uds_vehicle_accel
+Vehicle,VehicleLocation,1003,1,Safety-irrelated control,event,x,x,x,x,x,x,x,LocationInfo,41001,100,200,udp,31003,41003,239.10.3.11,31103,239.10.3.1,3,/tmp/uds/uds_vehicle_location
+Chassis,Transmission,2000,1,Safety-related control,event,x,x,x,x,x,x,x,GearStatus,42001,200,20,udp,32000,42000,239.10.3.12,32200,239.10.3.1,3,/tmp/uds/uds_vehicle_transmission
+Chassis,Driving,2001,1,Safety-related control,event,x,x,x,x,x,x,x,AccelStatus,42001,200,20,udp,32001,42001,239.10.3.12,32201,239.10.3.1,3,/tmp/uds/uds_driving
+Chassis,Driving,2001,1,Safety-related control,event,x,x,x,x,x,x,x,BrakeStatus,42002,200,20,udp,32001,42001,239.10.3.12,32201,239.10.3.1,3,/tmp/uds/uds_driving
+Chassis,SteeringWheel,2004,1,Safety-related control,event,x,x,x,x,x,x,x,SteeringWheelStatus,42001,200,20,udp,32004,42004,239.10.3.12,32204,239.10.3.1,3,/tmp/uds/uds_steeringwheel
+ADAS,TrafficLight,3000,1,Safety-irrelated control,event,x,x,x,x,x,x,x,TrafficLightStatus,43001,300,200,udp,33000,43000,239.10.3.13,33300,239.10.3.1,3,/tmp/uds/uds_trafficlight
+ADAS,Intersection,3001,1,Safety-irrelated control,event,x,x,x,x,x,x,x,IntersectionInfo,43001,300,200,udp,33001,43001,239.10.3.13,33301,239.10.3.1,3,/tmp/uds/uds_intersection
+ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectVelocityAxis,43002,300,20,udp,33002,43002,239.10.3.13,33302,239.10.3.1,3,/tmp/uds/uds_objectdetection
+ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectAccelAxis,43003,300,20,udp,33002,43002,239.10.3.13,33302,239.10.3.1,3,/tmp/uds/uds_objectdetection
+ADAS,Collision,3003,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectType,43001,300,20,udp,33003,43003,239.10.3.13,33303,239.10.3.1,3,/tmp/uds/uds_collision
+Cabin,Hvac,4000,1,Safety-irrelated control,field,x,x,Temperature,1000,2000,40000,400,x,x,400,x,udp,34000,44000,239.10.3.14,34400,239.10.3.1,3,x
+Cabin,Audio,4001,1,Safety-irrelated control,field,x,x,AudioVolume,1000,2000,40000,400,x,x,400,x,udp,34001,44001,239.10.3.14,34401,239.10.3.1,3,x
+Infotainment,Logging,6000,1,Safety-irrelated control,method,get_log_file,26001,x,x,x,x,x,x,x,x,x,tcp,36000,46000,x,x,239.10.3.1,3,x

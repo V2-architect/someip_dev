@@ -1,5 +1,6 @@
 {
     "VehicleSpeed": {
+        "SERVICE_CATEGORY": "Vehicle",
         "SERVICE_NAME": "VehicleSpeed",
         "SERVICE_ID": "1000",
         "INSTANCE_ID": "1",
@@ -26,6 +27,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_speed"
     },
     "VehiclePose": {
+        "SERVICE_CATEGORY": "Vehicle",
         "SERVICE_NAME": "VehiclePose",
         "SERVICE_ID": "1001",
         "INSTANCE_ID": "1",
@@ -52,6 +54,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_pose"
     },
     "VehicleAccel": {
+        "SERVICE_CATEGORY": "Vehicle",
         "SERVICE_NAME": "VehicleAccel",
         "SERVICE_ID": "1002",
         "INSTANCE_ID": "1",
@@ -78,6 +81,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_accel"
     },
     "VehicleLocation": {
+        "SERVICE_CATEGORY": "Vehicle",
         "SERVICE_NAME": "VehicleLocation",
         "SERVICE_ID": "1003",
         "INSTANCE_ID": "1",
@@ -104,6 +108,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_location"
     },
     "Transmission": {
+        "SERVICE_CATEGORY": "Chassis",
         "SERVICE_NAME": "Transmission",
         "SERVICE_ID": "2000",
         "INSTANCE_ID": "1",
@@ -130,6 +135,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_vehicle_transmission"
     },
     "Driving": {
+        "SERVICE_CATEGORY": "Chassis",
         "SERVICE_NAME": "Driving",
         "SERVICE_ID": "2001",
         "INSTANCE_ID": "1",
@@ -156,6 +162,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_driving"
     },
     "SteeringWheel": {
+        "SERVICE_CATEGORY": "Chassis",
         "SERVICE_NAME": "SteeringWheel",
         "SERVICE_ID": "2004",
         "INSTANCE_ID": "1",
@@ -182,6 +189,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_steeringwheel"
     },
     "TrafficLight": {
+        "SERVICE_CATEGORY": "ADAS",
         "SERVICE_NAME": "TrafficLight",
         "SERVICE_ID": "3000",
         "INSTANCE_ID": "1",
@@ -208,6 +216,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_trafficlight"
     },
     "Intersection": {
+        "SERVICE_CATEGORY": "ADAS",
         "SERVICE_NAME": "Intersection",
         "SERVICE_ID": "3001",
         "INSTANCE_ID": "1",
@@ -234,6 +243,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_intersection"
     },
     "ObjectDetection": {
+        "SERVICE_CATEGORY": "ADAS",
         "SERVICE_NAME": "ObjectDetection",
         "SERVICE_ID": "3002",
         "INSTANCE_ID": "1",
@@ -260,6 +270,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_objectdetection"
     },
     "Collision": {
+        "SERVICE_CATEGORY": "ADAS",
         "SERVICE_NAME": "Collision",
         "SERVICE_ID": "3003",
         "INSTANCE_ID": "1",
@@ -286,6 +297,7 @@
         "UNIX_DOMAIN_SOCKET_PATH": "/tmp/uds/uds_collision"
     },
     "Hvac": {
+        "SERVICE_CATEGORY": "Cabin",
         "SERVICE_NAME": "Hvac",
         "SERVICE_ID": "4000",
         "INSTANCE_ID": "1",
@@ -300,18 +312,19 @@
         "NOTIFIER_EVENTGROUP_ID": "400",
         "EVENT_NAME": "x",
         "EVENT_ID": "x",
-        "EVENTGROUP_ID": "x",
+        "EVENTGROUP_ID": "400",
         "TIME_INTERVAL": "x",
         "TRANSPORT_PROTOCOL": "udp",
         "UDP_PORT_NUM": "34000",
         "TCP_PORT_NUM": "44000",
         "EVENTGROUP_MULTICAST_IP": "239.10.3.14",
-        "EVENTGROUP_MULTICAST_PORT_NUM": "#VALUE!",
+        "EVENTGROUP_MULTICAST_PORT_NUM": "34400",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
         "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "x"
     },
     "Audio": {
+        "SERVICE_CATEGORY": "Cabin",
         "SERVICE_NAME": "Audio",
         "SERVICE_ID": "4001",
         "INSTANCE_ID": "1",
@@ -326,18 +339,19 @@
         "NOTIFIER_EVENTGROUP_ID": "400",
         "EVENT_NAME": "x",
         "EVENT_ID": "x",
-        "EVENTGROUP_ID": "x",
+        "EVENTGROUP_ID": "400",
         "TIME_INTERVAL": "x",
         "TRANSPORT_PROTOCOL": "udp",
         "UDP_PORT_NUM": "34001",
         "TCP_PORT_NUM": "44001",
         "EVENTGROUP_MULTICAST_IP": "239.10.3.14",
-        "EVENTGROUP_MULTICAST_PORT_NUM": "#VALUE!",
+        "EVENTGROUP_MULTICAST_PORT_NUM": "34401",
         "ROUTING_MULTICAST_IP": "239.10.3.1",
         "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "x"
     },
     "Logging": {
+        "SERVICE_CATEGORY": "Infotainment",
         "SERVICE_NAME": "Logging",
         "SERVICE_ID": "6000",
         "INSTANCE_ID": "1",
