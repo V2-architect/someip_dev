@@ -1,0 +1,64 @@
+{
+    "unicast" : "@SOMEIP_HOST_IP@",
+    "logging" :
+    {
+        "level" : "trace",
+        "console" : "true",
+        "file" : { "enable" : "true", "path" : "@LOGGING_FILEPATH@" },
+        "dlt" : "false",
+        "memory_log_interval": 1,
+        "status_log_interval": 1
+    },
+    "applications" :
+    [
+        {
+            "name" : "Audio",
+            "id" : "0x4001"
+        }
+    ],
+    "services" :
+    [
+        {
+            "service" : "0x4001",
+            "instance" : "0x0001",
+            "unreliable" : "34001",
+            "reliable" :
+                {
+                "port": "44001",
+                "enable-magic-cookies": "false"
+            },
+            "eventgroups": [
+                {
+                    "eventgroup": "0x0400",
+                    "multicast": {
+                        "address": "239.10.3.14",
+                        "port": "34401"
+                    },
+                    "threshold": 1
+                }
+            ]
+        }
+    ],
+    "clients" :
+    [   
+        {
+            "reliable_client_ports": {"first": "32100", "last": "32110"},
+            "reliable_remote_ports": {"first": "32100", "last": "32110"}
+        }
+    ], 
+    "routing" : "routingmanagerd",
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "239.10.3.1",
+        "port" : "30490",
+        "protocol" : "udp",
+        "initial_delay_min" : "10",
+        "initial_delay_max" : "100",
+        "repetitions_base_delay" : "200",
+        "repetitions_max" : "3",
+        "ttl" : "3",
+        "cyclic_offer_delay" : "2000",
+        "request_response_delay" : "1500"
+    }
+}
