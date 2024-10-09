@@ -226,6 +226,36 @@
                 "port": "46000",
                 "enable-magic-cookies": "false"
             }
+        },
+        {
+            "service" : "0x4000",
+            "instance" : "0x0001",
+            "unreliable" : "34000",
+            "eventgroups": [
+                {
+                    "eventgroup": "0x0400",
+                    "multicast": {
+                        "address": "239.10.3.14",
+                        "port": "34400"
+                    },
+                    "threshold": 1
+                }
+            ]
+        },
+        {
+            "service" : "0x4001",
+            "instance" : "0x0001",
+            "unreliable" : "34001",
+            "eventgroups": [
+                {
+                    "eventgroup": "0x0400",
+                    "multicast": {
+                        "address": "239.10.3.14",
+                        "port": "34401"
+                    },
+                    "threshold": 1
+                }
+            ]
         }
 	],
     "routing" : "routingmanagerd",
