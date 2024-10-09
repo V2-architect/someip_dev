@@ -43,6 +43,7 @@ char buffer[sizeof(int) + sizeof(float)*6];
 int32_t objtype = 0;
 float obj_vel_axis[3] = {0.0, 0.0, 0.0};
 float obj_accel_axis[3] = {0.0, 0.0, 0.0};
+float obj_info[6] = {0.0, 0.0, 0.0, 0.0, 0.0, 0.0};
 int32_t ObjectType_interval = 0;
 int32_t ObjectVelocityAxis_interval = 0;
 int32_t ObjectAccelAxis_interval = 0;
@@ -119,7 +120,8 @@ void socket_thread() {
         while (running) {
 			count++;
             // [todo] need to update according to the generated API ----------- START
-            ssize_t bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+            //ssize_t bytes_received = recv(client_socket, buffer, sizeof(buffer), 0);
+            ssize_t bytes_received = recv(client_socket, obj_info, sizeof(obj_info), 0);
             if (bytes_received <= 0) {
                 break;
             }
@@ -127,6 +129,7 @@ void socket_thread() {
 			// [todo] update vehicle data array
 			if (count % 50 == 0) {
 				// unpacking
+				/*
 				memcpy(&objtype,        buffer, sizeof(int));
 				memcpy(&obj_vel_axis,   buffer + sizeof(int), 3*sizeof(float));
 				memcpy(&obj_accel_axis, buffer + sizeof(int) + 3*sizeof(float), 3*sizeof(float));
@@ -135,6 +138,10 @@ void socket_thread() {
 				ss << "Received: " << objtype << ", "
 									<< obj_vel_axis[0] << ", "
 									<< obj_accel_axis[0];
+				*/
+				std::stringstream ss;
+				ss << "Received: " << obj_info[0] << ", " << obj_info[1] << ", " << obj_info[2]
+									<< obj_info[3] << ", " << obj_info[4] << ", " << obj_info[5];
 
 				count = 0;
 
@@ -167,7 +174,8 @@ void send_objtype(std::shared_ptr<ObjectDetectionStubImpl> myService) {
 void send_obj_vel_axis(std::shared_ptr<ObjectDetectionStubImpl> myService) {
     while (true) {
 		// vehicle position
-		myService->fireObjectVelocityAxisEvent(obj_vel_axis[0], obj_vel_axis[1], obj_vel_axis[2]);
+		//myService->fireObjectVelocityAxisEvent(obj_vel_axis[0], obj_vel_axis[1], obj_vel_axis[2]);
+		myService->fireObjectVelocityAxisEvent(obj_info[0], obj_info[1], obj_info[2]);
 
         //delay(1);
         usleep(ObjectVelocityAxis_interval); // 20ms
@@ -178,7 +186,8 @@ void send_obj_vel_axis(std::shared_ptr<ObjectDetectionStubImpl> myService) {
 void send_obj_accel_axis(std::shared_ptr<ObjectDetectionStubImpl> myService) {
     while (true) {
 		// vehicle angular velocity
-        myService->fireObjectAccelAxisEvent(obj_accel_axis[0], obj_accel_axis[1], obj_accel_axis[2]);
+        //myService->fireObjectAccelAxisEvent(obj_accel_axis[0], obj_accel_axis[1], obj_accel_axis[2]);
+        myService->fireObjectAccelAxisEvent(obj_info[3], obj_info[4], obj_info[5]);
 
         //delay(1);
         usleep(ObjectAccelAxis_interval); // 20ms
@@ -232,7 +241,7 @@ int main() {
 
 	// todo
 	// sending thread
-	std::thread th1(send_objtype, myService);
+	//std::thread th1(send_objtype, myService);
 	std::thread th2(send_obj_vel_axis, myService);
 	std::thread th3(send_obj_accel_axis, myService);
 

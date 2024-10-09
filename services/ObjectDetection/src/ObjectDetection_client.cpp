@@ -29,6 +29,7 @@ int main() {
     CommonAPI::CallStatus callStatus;
     int retVal;
 
+	/*
 	int count1 = 0;
     // [todo] need to work according to the generated API
     myProxy->getObjectTypeEvent().subscribe([&](const int32_t & objtype) {
@@ -39,6 +40,7 @@ int main() {
 			count1 = 0;
 		}
     });
+	*/
 
 	int count2 = 0;
     // [todo] need to work according to the generated API
