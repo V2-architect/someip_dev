@@ -16,3 +16,4 @@ ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,x,ObjectAccelAxis,4
 ADAS,Collision,3003,1,Safety-related control,event,x,x,x,ObjectType,43001,300,20,udp,33003,43003,239.10.3.13,33303,239.10.3.1,3,/tmp/uds/uds_collision
 Infotainment,Logging,6000,1,Safety-irrelated control,method,get_log_file,46001,x,x,x,x,x,tcp,36000,46000,x,x,239.10.3.1,3,x
 Cabin,Hvac,4000,1,Safety-irrelated control,field,x,x,temperature,x,x,400,x,udp,34000,44000,239.10.3.14,34400,239.10.3.1,3,x
+Cabin,Audio,4001,1,Safety-irrelated control,field,x,x,audio_volume,x,x,400,x,udp,34001,44001,239.10.3.14,34401,239.10.3.1,3,x

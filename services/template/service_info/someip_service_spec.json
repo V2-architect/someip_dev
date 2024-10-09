@@ -297,5 +297,28 @@
         "ROUTING_MULTICAST_IP": "239.10.3.1",
         "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "x"
+    },
+    "Audio": {
+        "SERVICE_CATEGORY": "Cabin",
+        "SERVICE_NAME": "Audio",
+        "SERVICE_ID": "4001",
+        "INSTANCE_ID": "1",
+        "DATA_CATEGORY": "Safety-irrelated control",
+        "SOMEIP_COMM_TYPE": "field",
+        "METHOD_NAME": "x",
+        "METHOD_ID": "x",
+        "FIELD_NAME": "audio_volume",
+        "EVENT_NAME": "x",
+        "EVENT_ID": "x",
+        "EVENTGROUP_ID": "400",
+        "TIME_INTERVAL": "x",
+        "TRANSPORT_PROTOCOL": "udp",
+        "UDP_PORT_NUM": "34001",
+        "TCP_PORT_NUM": "44001",
+        "EVENTGROUP_MULTICAST_IP": "239.10.3.14",
+        "EVENTGROUP_MULTICAST_PORT_NUM": "34401",
+        "ROUTING_MULTICAST_IP": "239.10.3.1",
+        "VLAN": "3",
+        "UNIX_DOMAIN_SOCKET_PATH": "x"
     }
 }
