@@ -77,7 +77,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
     parser.add_argument("-n", "--service-name", required=True, type=str, help="Name of the app")
-    parser.add_argument("-t", "--service-type", required=True, type=str, choices=["method", "event"], help="Type of the app (method or event)")
+    parser.add_argument("-t", "--service-type", required=True, type=str, choices=["method", "event", "field"], help="Type of the app (method or event or field)")
 
     args = parser.parse_args()
 
