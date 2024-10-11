@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/LoggingProxy.hpp>
+#include <ctime>
 
 using namespace v1::commonapi;
 
@@ -35,13 +36,25 @@ int main() {
     std::random_device rd;
     std::mt19937 gen(rd());
 
+	std::string logfiles[10];
+	for (int i = 0; i < 10; ++i) {
+        logfiles[i] = std::string("ivi") + std::to_string(i) + std::string(".log");
+    }
+
+	std::srand(static_cast<unsigned int>(std::time(0)));
+	int logfile_idx = 0;
+
     // [todo] need to update according to the generated API
     while(true) {
         // [1] method (out)
 		myProxy->get_log_file(callStatus, retVal);
 		std::cout << "[Logging] Response: '" << retVal << "'\n";
 
-        result = system("/root/someip_app/pyTFTP/client.py -g ivi.log 10.0.3.5 8467");
+		logfile_idx = std::rand() % 10;
+
+        result = system((std::string("/root/someip_app/pyTFTP/client.py -g ") + logfiles[logfile_idx] + std::string(" 10.0.3.5 8467")).data());
+        std::cout << "[Logging] logfile: " << logfiles[logfile_idx] << std::endl;
+
         if (result == 0)
             std::cout << "[Logging] received logs from ivi" << std::endl;
         else
@@ -50,7 +63,6 @@ int main() {
 		std::uniform_int_distribution<> dis(50, 70);
 		int random_sleep = dis(gen);
         std::cout << "sleep...(" << random_sleep << ")" << std::endl;
-
         sleep(random_sleep);
     }
 
