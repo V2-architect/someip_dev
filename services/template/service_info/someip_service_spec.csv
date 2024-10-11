@@ -15,4 +15,8 @@ ADAS,ObjectDetection,3002,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectAcc
 ADAS,Collision,3003,1,Safety-related control,event,x,x,x,x,x,x,x,ObjectType,43001,300,20,udp,33003,43003,239.10.3.13,33303,239.10.3.1,3,/tmp/uds/uds_collision
 Cabin,Hvac,4000,1,Safety-irrelated control,field,x,x,Temperature,1000,2000,40000,400,x,x,400,x,udp,34000,44000,239.10.3.14,34400,239.10.3.1,3,x
 Cabin,Audio,4001,1,Safety-irrelated control,field,x,x,AudioVolume,1000,2000,40000,400,x,x,400,x,udp,34001,44001,239.10.3.14,34401,239.10.3.1,3,x
+Body,Window_FL,5000,1,Safety-irrelated control,field,x,x,Position,1000,2000,40000,400,x,x,500,x,udp,35000,44002,239.10.3.15,35500,239.10.3.1,3,x
+Body,Window_FR,5001,1,Safety-irrelated control,field,x,x,Position,1001,2001,40001,400,x,x,500,x,udp,35001,44003,239.10.3.15,35501,239.10.3.1,3,x
+Body,Window_RL,5002,1,Safety-irrelated control,field,x,x,Position,1002,2002,40002,400,x,x,500,x,udp,35002,44004,239.10.3.15,35502,239.10.3.1,3,x
+Body,Window_RR,5003,1,Safety-irrelated control,field,x,x,Position,1003,2003,40003,400,x,x,500,x,udp,35003,44005,239.10.3.15,35503,239.10.3.1,3,x
 Infotainment,Logging,6000,1,Safety-irrelated control,method,get_log_file,26001,x,x,x,x,x,x,x,x,x,tcp,36000,46000,x,x,239.10.3.1,3,x
