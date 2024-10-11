@@ -21,10 +21,7 @@ using namespace std;
 
 const int32_t WINDOW_POS_MAX = 100;  // closed
 const int32_t WINDOW_POS_MIN = 0;
-const int32_t WINDOW_CTRL_DELAY_MIN = 60;  // s
-
-const int32_t ARRAY_SIZE = 100;
-const int32_t INTERVAL_LEN = 5;
+const int32_t WINDOW_CTRL_DELAY_MIN = 30;  // s
 
 void delay(int delay) {
 	std::cout << "[Window_FL] sleep " << delay << "s" << std::endl;
@@ -52,15 +49,12 @@ void log_message(const std::string& message) {
     std::cout << get_current_time() << " " << message << std::endl;
 }
 
-void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t interval[INTERVAL_LEN][ARRAY_SIZE], int32_t& curr_pos, int32_t& new_pos) {
-	int32_t interval_set = std::rand() % INTERVAL_LEN;
-	int32_t interval_idx = 0;
+void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t& curr_pos, int32_t& new_pos) {
 
 	if (new_pos > curr_pos) {
 		while(curr_pos < new_pos) {
 			myService->setPositionAttribute(++curr_pos);
-			std::this_thread::sleep_for(std::chrono::milliseconds(
-				interval[interval_set][interval_idx++]));
+			std::this_thread::sleep_for(std::chrono::milliseconds(50));
 			std::cout << "change window position: " << curr_pos << std::endl;
 		}
 	}
@@ -68,8 +62,7 @@ void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t interv
 	else if (new_pos < curr_pos) {
 		while(curr_pos > new_pos) {
 			myService->setPositionAttribute(--curr_pos);
-			std::this_thread::sleep_for(std::chrono::milliseconds(
-				interval[interval_set][interval_idx++]));
+			std::this_thread::sleep_for(std::chrono::milliseconds(50));
 			std::cout << "change window position: " << curr_pos << std::endl;
 		}
 	}
@@ -78,31 +71,26 @@ void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t interv
 // todo
 // position = 0~100
 void updatePosition(std::shared_ptr<Window_FLStubImpl> myService) {
-	std::srand(static_cast<unsigned int>(std::time(0)));
-
-	// 5sets of series of random values -----S
-    int window_ctrl_interval[INTERVAL_LEN][ARRAY_SIZE];
-	
-    for (int i = 0; i < INTERVAL_LEN; ++i)
-		for (int j = 0; j < ARRAY_SIZE; ++j)
-			window_ctrl_interval[i][j] = 50 + (std::rand() % 21) - 10;
-	// 5sets of series of random values -----E
+	// std::srand(static_cast<unsigned int>(std::time(0)));
 
 	int32_t curr_pos = 100;
 	int32_t new_pos  = std::rand() % 100;
-	int32_t window_control_delay = std::rand() % 61 + WINDOW_CTRL_DELAY_MIN; // per 1~2min (60~120s)
-
+	int32_t window_control_delay = std::rand() % 61 + WINDOW_CTRL_DELAY_MIN; // per 1~2min (30~90s)
 
     while (true) {
 		// current vehicle window position
 		std::cout << "[Window_FL] set_window_position_thread: " << curr_pos << std::endl;
-		new_pos = std::rand() % 100;
-		window_control_delay = std::rand() % 61 + WINDOW_CTRL_DELAY_MIN; // per 1~2min (60~120s)
+		while (true) {
+			new_pos = std::rand() % 100;
+			if (std::abs(new_pos-curr_pos) >= 40)
+				break;
+		}
+		window_control_delay = std::rand() % 61 + WINDOW_CTRL_DELAY_MIN; // per 1~2min (30~90s)
 
 		std::cout << "waiting until next window_control: " << window_control_delay << "s" << std::endl;
 		std::this_thread::sleep_for(std::chrono::seconds(window_control_delay));
 
-		changePosition(myService, window_ctrl_interval, curr_pos, new_pos);
+		changePosition(myService, curr_pos, new_pos);
 		curr_pos = new_pos;
     }
 }
