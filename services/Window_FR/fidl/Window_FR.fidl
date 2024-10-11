@@ -1,0 +1,8 @@
+package commonapi
+ 
+interface Window_FR {
+  version {major 1 minor 0}
+
+  attribute Int32 Position
+} 
+
