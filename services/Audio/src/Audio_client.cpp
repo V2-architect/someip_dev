@@ -13,7 +13,7 @@ using namespace v1::commonapi;
 // global variables
 float curr_audio_volume = 0.0;
 const int32_t AUDIO_VOL_MAX = 51;
-const int32_t AUDIO_CTRL_DELAY_MAX = 180;  // s
+const int32_t AUDIO_CTRL_DELAY_MIN = 50;  // s
 
 void recv_field_cb(const CommonAPI::CallStatus& callStatus, const float& val) {
     std::cout << "[Audio][Client][Field-Async] Receive callback: " << val << std::endl;
@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
 	
     for (int i = 0; i < 5; ++i)
 		for (int j = 0; j < ARRAY_SIZE; ++j)
-			audio_ctrl_interval[i][j] = 50 + (std::rand() % 21) - 10;
+			audio_ctrl_interval[i][j] = 50 + (std::rand() % 251); // 50ms ~ 300ms
 	int interval_set = 0;
 	int interval_idx = 0;
 	// 5sets of series of random values -----E
@@ -92,21 +92,26 @@ int main(int argc, char* argv[]) {
 		std::cout << "[Audio][Client][" << ecu_name << "] while loop start" << std::endl;
 		while(true) {
 			std::cout << "[Audio][Client] while loop... in main thread" << std::endl;
-			audio_control_delay = std::rand() % 61 + AUDIO_CTRL_DELAY_MAX; // per 3~5min
+			audio_control_delay = std::rand() % 61 + AUDIO_CTRL_DELAY_MIN; // per 50s~110s
 			std::cout << "waiting until next autio_control: " << audio_control_delay << "s" << std::endl;
 			std::this_thread::sleep_for(std::chrono::seconds(audio_control_delay));
 
-			new_audio_volume = std::rand() % AUDIO_VOL_MAX;
-			std::cout << "new  Audio Volumn: " << new_audio_volume  << std::endl;
-			std::cout << "curr Audio Volumn: " << curr_audio_volume << std::endl;
+			while(true){
+				new_audio_volume = std::rand() % AUDIO_VOL_MAX;
+				if (std::abs(new_audio_volume-curr_audio_volume) > 20)
+					break;
+				std::cout << "new  Audio Volumn: " << new_audio_volume  << std::endl;
+				std::cout << "curr Audio Volumn: " << curr_audio_volume << std::endl;
+			}
 
-			interval_idx = std::rand() % 6;
+			interval_set = std::rand() % 5;
+			interval_idx = 0;
 
 			if (new_audio_volume > curr_audio_volume) {
 				while(curr_audio_volume < new_audio_volume) {
 					handle_field_async(myProxy, ++curr_audio_volume);
 					std::this_thread::sleep_for(std::chrono::milliseconds(
-						audio_ctrl_interval[interval_set][interval_idx]));
+						audio_ctrl_interval[interval_set][interval_idx++]));
 				}
 			}
 
@@ -114,7 +119,7 @@ int main(int argc, char* argv[]) {
 				while(curr_audio_volume > new_audio_volume) {
 					handle_field_async(myProxy, --curr_audio_volume);
 					std::this_thread::sleep_for(std::chrono::milliseconds(
-						audio_ctrl_interval[interval_set][interval_idx]));
+						audio_ctrl_interval[interval_set][interval_idx++]));
 				}
 			}
 		}
