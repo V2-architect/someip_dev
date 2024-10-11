@@ -54,7 +54,7 @@ void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t& curr_
 	if (new_pos > curr_pos) {
 		while(curr_pos < new_pos) {
 			myService->setPositionAttribute(++curr_pos);
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::microseconds(49900));
 			std::cout << "change window position: " << curr_pos << std::endl;
 		}
 	}
@@ -62,7 +62,7 @@ void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t& curr_
 	else if (new_pos < curr_pos) {
 		while(curr_pos > new_pos) {
 			myService->setPositionAttribute(--curr_pos);
-			std::this_thread::sleep_for(std::chrono::milliseconds(50));
+			std::this_thread::sleep_for(std::chrono::microseconds(49900));
 			std::cout << "change window position: " << curr_pos << std::endl;
 		}
 	}
@@ -71,7 +71,7 @@ void changePosition(std::shared_ptr<Window_FLStubImpl> myService, int32_t& curr_
 // todo
 // position = 0~100
 void updatePosition(std::shared_ptr<Window_FLStubImpl> myService) {
-	// std::srand(static_cast<unsigned int>(std::time(0)));
+	std::srand(static_cast<unsigned int>(std::time(0)));
 
 	int32_t curr_pos = 100;
 	int32_t new_pos  = std::rand() % 100;
