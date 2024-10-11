@@ -1,0 +1,57 @@
+{
+    "unicast" : "@SOMEIP_HOST_IP@",
+    "logging" :
+    {
+        "level" : "trace",
+        "console" : "true",
+        "file" : { "enable" : "true", "path" : "@LOGGING_FILEPATH@" },
+        "dlt" : "false",
+        "memory_log_interval": 1,
+        "status_log_interval": 1
+    },
+    "applications" :
+    [
+        {
+            "name" : "Window_FL",
+            "id" : "0x5000"
+        }
+    ],
+    "services" :
+    [
+        {
+            "service" : "0x5000",
+            "instance" : "0x0001",
+            "unreliable" : "35000",
+            "reliable" :
+                {
+                "port": "44002",
+                "enable-magic-cookies": "false"
+            },
+            "eventgroups": [
+                {
+                    "eventgroup": "0x0500",
+                    "multicast": {
+                        "address": "239.10.3.15",
+                        "port": "35500"
+                    },
+                    "threshold": 1
+                }
+            ]
+        }
+    ],
+    "routing" : "routingmanagerd",
+    "service-discovery" :
+    {
+        "enable" : "true",
+        "multicast" : "239.10.3.1",
+        "port" : "30490",
+        "protocol" : "udp",
+        "initial_delay_min" : "10",
+        "initial_delay_max" : "100",
+        "repetitions_base_delay" : "200",
+        "repetitions_max" : "3",
+        "ttl" : "3",
+        "cyclic_offer_delay" : "2000",
+        "request_response_delay" : "1500"
+    }
+}
