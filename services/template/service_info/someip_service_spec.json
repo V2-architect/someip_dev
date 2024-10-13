@@ -484,5 +484,32 @@
         "ROUTING_MULTICAST_IP": "239.10.3.1",
         "VLAN": "3",
         "UNIX_DOMAIN_SOCKET_PATH": "x"
+    },
+    "Update": {
+        "SERVICE_CATEGORY": "Infotainment",
+        "SERVICE_NAME": "Update",
+        "SERVICE_ID": "7000",
+        "INSTANCE_ID": "1",
+        "DATA_CATEGORY": "Safety-irrelated control",
+        "SOMEIP_COMM_TYPE": "method",
+        "METHOD_NAME": "start_update_server",
+        "METHOD_ID": "27001",
+        "FIELD_NAME": "x",
+        "GETTER_ID": "x",
+        "SETTER_ID": "x",
+        "NOTIFIER_ID": "x",
+        "NOTIFIER_EVENTGROUP_ID": "x",
+        "EVENT_NAME": "x",
+        "EVENT_ID": "x",
+        "EVENTGROUP_ID": "x",
+        "TIME_INTERVAL": "x",
+        "TRANSPORT_PROTOCOL": "tcp",
+        "UDP_PORT_NUM": "37000",
+        "TCP_PORT_NUM": "47000",
+        "EVENTGROUP_MULTICAST_IP": "x",
+        "EVENTGROUP_MULTICAST_PORT_NUM": "x",
+        "ROUTING_MULTICAST_IP": "239.10.3.1",
+        "VLAN": "3",
+        "UNIX_DOMAIN_SOCKET_PATH": "x"
     }
 }

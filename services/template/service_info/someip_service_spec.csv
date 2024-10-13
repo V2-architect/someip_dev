@@ -20,3 +20,4 @@ Body,Window_FR,5001,1,Safety-irrelated control,field,x,x,Position,1001,2001,4000
 Body,Window_RL,5002,1,Safety-irrelated control,field,x,x,Position,1002,2002,40002,400,x,x,500,x,udp,35002,44004,239.10.3.15,35502,239.10.3.1,3,x
 Body,Window_RR,5003,1,Safety-irrelated control,field,x,x,Position,1003,2003,40003,400,x,x,500,x,udp,35003,44005,239.10.3.15,35503,239.10.3.1,3,x
 Infotainment,Logging,6000,1,Safety-irrelated control,method,get_log_file,26001,x,x,x,x,x,x,x,x,x,tcp,36000,46000,x,x,239.10.3.1,3,x
+Infotainment,Update,7000,1,Safety-irrelated control,method,start_update_server,27001,x,x,x,x,x,x,x,x,x,tcp,37000,47000,x,x,239.10.3.1,3,x
