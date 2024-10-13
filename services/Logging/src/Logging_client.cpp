@@ -52,7 +52,8 @@ int main() {
 
 		logfile_idx = std::rand() % 10;
 
-        result = system((std::string("/root/someip_app/pyTFTP/client.py -g ") + logfiles[logfile_idx] + std::string(" 10.0.3.5 8467")).data());
+		// set tftp max block size
+        result = system((std::string("/root/someip_app/pyTFTP/client.py -g ") + logfiles[logfile_idx] + std::string(" -b 65464 10.0.3.5 8467")).data());
         std::cout << "[Logging] logfile: " << logfiles[logfile_idx] << std::endl;
 
         if (result == 0)
