@@ -1,0 +1,21 @@
+import "platform:/plugin/org.genivi.commonapi.someip/deployment/CommonAPI-4-SOMEIP_deployment_spec.fdepl"
+import "Window_FR.fidl"
+
+define org.genivi.commonapi.someip.deployment for interface commonapi.Window_FR {
+	SomeIpServiceID = 0x5001
+
+	attribute Position {
+		SomeIpGetterID = 1001
+		SomeIpSetterID = 2001
+		SomeIpNotifierID = 40001
+		SomeIpNotifierEventGroups = { 0x0400 }
+		SomeIpAttributeReliable = true
+	}
+}
+
+define org.genivi.commonapi.someip.deployment for provider as MyService {
+	instance commonapi.Window_FR {
+		InstanceId = "test"
+		SomeIpInstanceID = 0x0001
+	}
+}
